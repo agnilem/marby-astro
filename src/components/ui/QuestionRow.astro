@@ -1,0 +1,38 @@
+---
+import Icon from '../Icon.astro';
+interface Props { n: number; q: string; a: string; delay?: number }
+const { n, q, a, delay = 0 } = Astro.props;
+const id = `faq-${n}-${q.length}`;
+---
+<!-- The whole row toggles; the + chip is the accessible button. -->
+<div class="qrow" data-acc-item data-acc-trigger data-appear style={`--appear-delay:${delay}s`}>
+  <span class="t-h5 qrow__n">{String(n).padStart(2, '0')}</span>
+  <div class="qrow__body">
+    <h3 class="qrow__q t-h6">{q}</h3>
+    <div class="qrow__panel" id={id} data-acc-panel>
+      <div><p class="t-body-sm qrow__a">{a}</p></div>
+    </div>
+  </div>
+  <button class="qrow__btn" type="button" aria-expanded="false" aria-controls={id} aria-label={q}><Icon name="plus" /></button>
+</div>
+<style>
+  .qrow { display: flex; align-items: flex-start; gap: 20px; padding-bottom: 20px; box-shadow: inset 0 -1px 0 var(--ink-200); cursor: pointer; }
+  .qrow__n { flex: none; }
+  .qrow__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .qrow__btn {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 28px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--ink-200);
+    color: var(--ink-900);
+  }
+  .qrow__btn :global(.icon) { transition: transform 0.4s var(--ease-accordion); }
+  .qrow.is-open .qrow__btn :global(.icon) { transform: rotate(45deg); }
+  .qrow__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s var(--ease-accordion); }
+  .qrow__panel > div { overflow: hidden; }
+  .qrow__a { padding-top: 8px; }
+</style>

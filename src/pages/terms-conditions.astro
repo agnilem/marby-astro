@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import { site } from '../lib/site';
+const t = await site('terms');
+---
+<Base title="Terms & Conditions | Marby" description="Read the terms and conditions for using the Marby website.">
+  <PageHeader label={t.label} title={t.title} />
+  <section class="terms" data-appear="mount" style="--appear-delay:0.6s">
+    <div class="terms__text">
+      {t.sections.map((s: any) => (
+        <div class="terms__block">
+          <h2 class="terms__h">{s.title}</h2>
+          {s.body.map((p: string) => <p class="t-body">{p}</p>)}
+          {s.list && <ul class="terms__list">{s.list.map((li: string) => <li class="t-body">{li}</li>)}</ul>}
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>
+<style>
+  .terms { max-width: var(--container); margin-inline: auto; padding-bottom: 80px; display: flex; justify-content: center; }
+  .terms__text { width: 100%; max-width: 740px; padding: 0 20px; display: flex; flex-direction: column; gap: 40px; }
+  .terms__block { display: flex; flex-direction: column; gap: 10px; }
+  .terms__block > * + * { margin-top: 10px; }
+  .terms__h { font-size: var(--h5); line-height: 1.2; font-weight: 500; color: var(--ink-600); }
+  .terms__list li { position: relative; padding-left: 16px; }
+  .terms__list li::before { content: '·'; position: absolute; left: 0; }
+</style>

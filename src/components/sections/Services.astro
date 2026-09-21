@@ -1,0 +1,74 @@
+---
+import Btn from '../Btn.astro';
+import { site } from '../../lib/site';
+const { services } = await site('home');
+---
+<section class="services">
+  <div class="container services__inner">
+    <div class="services__head">
+      <p class="t-caption2" data-appear>{services.label}</p>
+      <h2 class="t-h2" data-appear style="--appear-delay:0.1s">{services.title}</h2>
+    </div>
+    <div class="services__stack">
+      {services.items.map((s: any, i: number) => (
+        <a class="svc hover-target" href={s.href} data-appear={i === 0 ? '' : undefined} style={i === 0 ? '--appear-delay:0.2s;--appear-ease:var(--ease-inout)' : undefined}>
+          <img class="svc__img" src={s.image} alt="Service card property image" loading="lazy" />
+          <div class="svc__card">
+            <div class="svc__progress">
+              <span class="svc__line"></span>
+              <span class="svc__count">{s.counter}</span>
+            </div>
+            <p class="t-body-sm c-300">{s.label}</p>
+            <h3 class="t-h3">{s.title}</h3>
+            <div class="svc__text"><p class="t-body-sm">{s.text}</p></div>
+            <Btn label={s.button} variant="secondary" />
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .services { background: var(--white); padding-block: 80px; }
+  .services__inner { display: flex; flex-direction: column; gap: 40px; }
+  .services__head { display: flex; flex-direction: column; gap: 12px; }
+  .services__stack { display: flex; flex-direction: column; gap: 20px; }
+  .svc {
+    position: sticky;
+    top: 100px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .svc__img { flex: 1 1 0; min-width: 0; height: 500px; object-fit: cover; border-radius: 8px; }
+  .svc__card {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--ink-50);
+    overflow: hidden;
+  }
+  .svc__progress { width: 100%; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+  .svc__line { width: 100%; height: 1px; background: var(--ink-200); }
+  .svc__count { font-family: var(--font-caption); font-size: 14px; line-height: 1.2; color: var(--ink-300); }
+  .svc__text { flex: 1; width: 100%; display: flex; align-items: center; }
+  @media (max-width: 1199.98px) {
+    .services { padding-block: 40px; }
+    .services__inner { gap: 20px; }
+  }
+  @media (max-width: 809.98px) {
+    .services__inner { gap: 40px; }
+    .svc { height: auto; flex-direction: column; }
+    .svc:nth-child(3) { top: 120px; }
+    .svc__img, .svc__card { flex: none; width: 100%; }
+    .svc__img { height: 260px; }
+    .svc__card { height: auto; }
+    .svc__text { flex: none; height: 340px; }
+  }
+</style>

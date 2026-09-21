@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import AboutVision from '../components/sections/AboutVision.astro';
+import AboutYears from '../components/sections/AboutYears.astro';
+import AboutBeliefs from '../components/sections/AboutBeliefs.astro';
+import Faq from '../components/sections/Faq.astro';
+import Team from '../components/sections/Team.astro';
+import { site } from '../lib/site';
+const about = await site('about');
+---
+<Base
+  title="About Marby — Our Story & Real Estate Expertise"
+  description="Meet the Marby team — experienced real estate professionals dedicated to helping you buy, sell, and invest with confidence. Learn about our values and approach."
+>
+  <PageHeader label={about.header.label} title={about.header.title} />
+  <AboutVision />
+  <AboutYears />
+  <AboutBeliefs />
+  <Faq />
+  <Team />
+</Base>

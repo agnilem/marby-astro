@@ -1,0 +1,52 @@
+---
+import Icon from '../Icon.astro';
+interface Props { n: number; q: string; a: string; delay?: number }
+const { n, q, a, delay = 0 } = Astro.props;
+const id = `tile-${n}`;
+---
+<!-- "Question card 2": a tile that turns dark and reveals the answer. -->
+<div class="qtile" data-acc-item data-acc-trigger data-appear style={`--appear-delay:${delay}s`}>
+  <div class="qtile__top">
+    <span class="t-h1 qtile__n">{String(n).padStart(2, '0')}</span>
+    <button class="qtile__btn" type="button" aria-expanded="false" aria-controls={id} aria-label={q}><Icon name="plus" /></button>
+  </div>
+  <div class="qtile__body">
+    <h3 class="t-h6 qtile__q">{q}</h3>
+    <p class="t-body-sm qtile__a" id={id}>{a}</p>
+  </div>
+</div>
+<style>
+  .qtile {
+    height: 362px;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--ink-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 80px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color var(--spring-04-dur) var(--spring-04);
+  }
+  .qtile__top { display: flex; align-items: flex-start; gap: 8px; }
+  .qtile__n { flex: 1; transition: color var(--spring-04-dur) var(--spring-04); }
+  .qtile__btn {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 28px;
+    border-radius: 4px;
+    background: var(--ink-200);
+    color: var(--ink-900);
+  }
+  .qtile__btn :global(.icon) { transition: transform var(--spring-04-dur) var(--spring-04); }
+  .qtile__body { display: flex; flex-direction: column; gap: 8px; }
+  .qtile__a { display: none; color: var(--ink-200); }
+  .qtile.is-open { background: var(--ink-900); }
+  .qtile.is-open .qtile__n { color: var(--ink-50); }
+  .qtile.is-open .qtile__q { color: var(--ink-200); }
+  .qtile.is-open .qtile__a { display: block; }
+  .qtile.is-open .qtile__btn :global(.icon) { transform: rotate(45deg); }
+</style>

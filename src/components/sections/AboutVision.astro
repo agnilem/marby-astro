@@ -1,0 +1,66 @@
+---
+import { site } from '../../lib/site';
+const { vision } = await site('about');
+---
+<section class="vision" data-dark data-appear="mount" style="--appear-delay:0.6s">
+  <img class="vision__bg" src={vision.image} alt="" />
+  <div class="container vision__inner">
+    <div class="vision__head">
+      <div class="vision__title">
+        <p class="t-caption2 c-50">{vision.label}</p>
+        <h2 class="t-h2 c-50">{vision.title}</h2>
+      </div>
+      <p class="t-body-sm c-200 balance vision__text">{vision.text}</p>
+    </div>
+    <div class="vision__cards">
+      {vision.cards.map((c: any, i: number) => (
+        <div class:list={['vision__box', i === 0 ? 'vision__box--a' : 'vision__box--b']}>
+          <div class="vcard">
+            <h3 class="t-h3 c-50">{c.title}</h3>
+            <div class="vcard__text"><p class="t-body-sm c-200">{c.text}</p></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .vision { position: relative; height: 700px; padding-block: 80px; overflow: clip; display: flex; align-items: center; }
+  .vision__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .vision__inner { position: relative; display: flex; flex-direction: column; gap: 40px; }
+  .vision__head { display: flex; align-items: flex-end; gap: 20px; }
+  .vision__title { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .vision__title h2 { max-width: 460px; }
+  .vision__text { width: 460px; }
+  .vision__cards { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .vision__box { overflow: clip; }
+  .vision__box--a { padding: 80px 20px 0 0; }
+  .vision__box--b { padding: 0 0 80px 20px; }
+  .vcard {
+    width: 535px;
+    max-width: 100%;
+    height: 248px;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--ink-950-15);
+    box-shadow: inset 0 0 0 1px var(--ink-50-20);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  .vcard__text { flex: 1; display: flex; align-items: flex-end; }
+  @media (max-width: 1199.98px) {
+    .vision__box { flex: 1 1 0; min-width: 0; }
+    .vcard { width: 100%; }
+  }
+  @media (max-width: 809.98px) {
+    .vision { height: auto; }
+    .vision__head, .vision__cards { flex-direction: column; align-items: stretch; }
+    .vision__text { width: 100%; }
+    .vision__cards { gap: 0; }
+    .vision__box--a { padding: 0 20px 40px 0; }
+    .vision__box--b { padding: 0 0 40px 20px; }
+  }
+</style>

@@ -1,0 +1,198 @@
+---
+import Btn from './Btn.astro';
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+
+interface Props { withForm?: boolean }
+const { withForm = true } = Astro.props;
+const s = await site('settings');
+const c = s.contact;
+// Optional: point the form at your form service (Formspree, Basin, ...).
+// Left unset, the form runs its states locally and sends nothing.
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+---
+{withForm && (
+  <section class="contact" data-dark>
+    <img class="contact__bg" src={c.image} alt="" loading="lazy" decoding="async" />
+    <div class="contact__scrim" aria-hidden="true"></div>
+    <div class="container contact__inner">
+      <div class="contact__head">
+        <div class="contact__title">
+          <p class="t-caption2 c-50" data-appear>{c.label}</p>
+          <h2 class="t-h2 c-50" data-appear style="--appear-delay:0.1s">{c.title}</h2>
+        </div>
+        <p class="t-body-sm c-50 contact__text balance" data-appear style="--appear-delay:0.2s">{c.text}</p>
+      </div>
+      <div class="contact__row">
+        <form class="contact__form glass" action={endpoint || undefined} method="post" data-form data-appear style="--appear-delay:0.3s">
+          <label class="field">
+            <span class="t-body-sm c-300">{c.fields.name}</span>
+            <input type="text" name="name" autocomplete="name" />
+          </label>
+          <label class="field">
+            <span class="t-body-sm c-300">{c.fields.email}</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label class="field">
+            <span class="t-body-sm c-300">{c.fields.message}</span>
+            <textarea name="message" rows="3"></textarea>
+          </label>
+          <button class="submit" type="submit" data-state="idle">
+            <span class="submit__label btn__label" data-label-idle={c.submit} data-label-success={c.fields.success} data-label-error={c.fields.error}>{c.submit}</span>
+            <span class="submit__icon btn__icon"><Icon name="arrow" /></span>
+            <span class="submit__spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+)}
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <p class="t-body-lg c-50">{s.brand}</p>
+        <p class="t-caption c-200">{s.footer.description}</p>
+        <Btn label={s.footer.cta.label} href={s.footer.cta.href} variant="secondary" />
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <p class="t-body c-50">{s.footer.socialTitle}</p>
+          <ul>
+            {s.socials.map((x: any) => (
+              <li><a class="t-body-sm link" href={x.href} target="_blank" rel="noreferrer">{x.footerLabel}</a></li>
+            ))}
+          </ul>
+        </div>
+        {s.footer.columns.map((col: any) => (
+          <div class="footer__col">
+            <p class="t-body c-50">{col.title}</p>
+            <ul>
+              {col.links.map((l: any) => <li><a class="t-body-sm link" href={l.href}>{l.label}</a></li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <a class="t-caption link" href={s.footer.legal.href}>{s.footer.legal.label}</a>
+      <p class="t-caption c-200 footer__copy">{s.footer.copyright}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .contact {
+    position: relative;
+    min-height: 752px;
+    padding-block: 80px;
+    display: flex;
+    align-items: center;
+    overflow: clip;
+  }
+  .contact__bg {
+    position: absolute;
+    inset: -116px -122px;
+    width: calc(100% + 244px);
+    height: calc(100% + 232px);
+    object-fit: cover;
+  }
+  .contact__scrim {
+    position: absolute;
+    inset: 0;
+    background: var(--glass-warm);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+  .contact__inner { position: relative; display: flex; flex-direction: column; gap: 40px; }
+  .contact__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+  .contact__title { flex: 1; max-width: 460px; display: flex; flex-direction: column; gap: 12px; }
+  .contact__text { flex: 1; max-width: 460px; }
+  .contact__row { display: flex; justify-content: flex-end; }
+  .contact__form {
+    width: 460px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(20, 27, 52, 0) 3%, rgba(20, 27, 52, 0.15) 99%);
+  }
+  .field { width: 100%; display: flex; flex-direction: column; }
+  .field input,
+  .field textarea {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--ink-400);
+    border-radius: 0;
+    color: var(--ink-200);
+    font-family: var(--font-caption);
+    font-size: 16px;
+    line-height: 1.2;
+    padding: 0;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .field input { height: 55px; }
+  .field textarea { min-height: 80px; padding-top: 12px; resize: vertical; }
+  .field input:focus,
+  .field textarea:focus { border-bottom-color: var(--white); }
+
+  .submit {
+    position: relative;
+    width: 240px;
+    height: 40px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ink-200);
+    color: var(--ink-900);
+    transition: background-color 0.2s var(--ease-inout);
+  }
+  .submit__label { flex: 1; text-align: left; }
+  .submit__spinner {
+    display: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--ink-900) 7deg, var(--white) 342deg);
+    -webkit-mask: radial-gradient(circle, transparent 5.5px, #000 6px);
+    mask: radial-gradient(circle, transparent 5.5px, #000 6px);
+    animation: spin 1s linear infinite;
+  }
+  .submit[data-state='loading'] .submit__icon { display: none; }
+  .submit[data-state='loading'] .submit__spinner { display: block; }
+  .submit[data-state='error'] { background: rgba(255, 34, 68, 0.15); color: var(--ink-50); }
+  @media (hover: hover) { .submit:hover .btn__icon { transform: rotate(45deg); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .footer { background: var(--ink-950); padding-block: 40px; }
+  .footer__inner { display: flex; flex-direction: column; gap: 40px; }
+  .footer__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+  .footer__brand { width: 300px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer__links { flex: 1; display: flex; justify-content: flex-end; gap: 80px; }
+  .footer__col { display: flex; flex-direction: column; gap: 20px; }
+  .footer__col ul { display: flex; flex-direction: column; gap: 12px; }
+  .footer__col li { display: flex; }
+  .footer__links .link:hover,
+  .footer__bottom .link:hover { color: var(--ink-50); }
+  .footer__bottom { display: flex; justify-content: space-between; gap: 12px; }
+  .footer__bottom > * { flex: 1; }
+  .footer__copy { text-align: right; }
+
+  @media (max-width: 809.98px) {
+    .contact__head { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
+    .contact__title, .contact__text { max-width: none; width: 100%; }
+    .contact__form { width: 100%; }
+    .footer__top { flex-direction: column; }
+    .footer__links { justify-content: flex-start; flex-wrap: wrap; }
+    .footer__bottom { flex-direction: column; }
+    .footer__copy { text-align: left; }
+  }
+</style>

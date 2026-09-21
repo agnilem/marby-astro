@@ -1,0 +1,85 @@
+---
+import Btn from '../Btn.astro';
+import { site } from '../../lib/site';
+const contact = await site('contact');
+const n = contact.offices.length;
+---
+<section class="offices" data-appear="mount" style="--appear-delay:0.6s;--appear-y:150px">
+  {contact.offices.map((o: any, i: number) => (
+    <div class="office" data-dark>
+      <picture>
+        {o.imagePhone && <source media="(max-width: 809.98px)" srcset={o.imagePhone} />}
+        <img class="office__bg" src={o.image} alt={contact.labels.image} loading={i === 0 ? 'eager' : 'lazy'} />
+      </picture>
+      <div class="office__inner">
+        <div class="ocard">
+          <div class="ocard__progress">
+            <div class="ocard__bars">
+              {Array.from({ length: n }, (_, k) => <span class:list={{ 'is-active': k === i }}></span>)}
+            </div>
+            <p class="t-body c-50">{o.counter}</p>
+          </div>
+          <div class="ocard__name">
+            <p class="t-caption2 c-200">{o.label}</p>
+            <h2 class="t-h3 c-50">{o.city}</h2>
+          </div>
+          <div class="ocard__details">
+            <p class="t-body-sm c-200 ocard__text">{o.text}</p>
+            <div class="ocard__pair">
+              <div><p class="t-caption2 c-300">{contact.labels.address}</p><p class="t-body-sm c-50">{o.address[0]}<br />{o.address[1]}</p></div>
+              <div><p class="t-caption2 c-300">{contact.labels.hours}</p><div class="ocard__hours">{o.hours.map((h: string) => <p class="t-body-sm c-50">{h}</p>)}</div></div>
+            </div>
+            <div class="ocard__pair">
+              <div><p class="t-caption2 c-300">{contact.labels.phone}</p><a class="t-body-sm c-50" href={`tel:${o.tel}`}>{o.phone}</a></div>
+              <div><p class="t-caption2 c-300">{contact.labels.email}</p><a class="t-body-sm c-50" href={`mailto:${o.email}`}>{o.email}</a></div>
+            </div>
+          </div>
+          <Btn label={contact.cta.label} href={contact.cta.href} variant="secondary" />
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+<style>
+  .offices { overflow: clip; display: flex; flex-direction: column; }
+  .office {
+    position: sticky;
+    top: 80px;
+    height: 100vh;
+    overflow: clip;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .office__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .office__inner { position: relative; width: 100%; max-width: var(--container); padding: 20px; display: flex; align-items: center; }
+  .ocard {
+    width: 440px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    background: var(--ink-950-15);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  .ocard__progress { width: 100%; display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+  .ocard__bars { width: 100%; display: flex; gap: 4px; }
+  .ocard__bars span { flex: 1; height: 1px; background: var(--ink-400); }
+  .ocard__bars span.is-active { background: var(--white); }
+  .ocard__name { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+  .ocard__details { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+  .ocard__text { padding-bottom: 20px; box-shadow: inset 0 -1px 0 var(--ink-300); }
+  .ocard__pair { display: flex; gap: 20px; }
+  .ocard__hours { display: flex; flex-direction: column; gap: 20px; }
+  .ocard__pair > div { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  @media (max-width: 809.98px) {
+    .office { position: relative; top: auto; z-index: 1; }
+    .ocard { width: 100%; }
+  }
+</style>

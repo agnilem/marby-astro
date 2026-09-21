@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+
+// The design's Buttons component: 28px tall, caption label, arrow icon that
+// turns 45 degrees on hover. `href` omitted renders a <span> so the button can
+// sit inside a card that is itself a link.
+interface Props {
+  label?: string;
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'icon';
+  class?: string;
+  [key: string]: any;
+}
+const { label, href, variant = 'primary', class: cls, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'span';
+---
+<Tag href={href} class:list={['btn', `btn--${variant}`, cls]} {...rest}>
+  {variant !== 'icon' && <span class="btn__label">{label}</span>}
+  <span class="btn__icon"><Icon name="arrow" /></span>
+</Tag>

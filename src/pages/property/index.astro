@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+import Btn from '../../components/Btn.astro';
+import Icon from '../../components/Icon.astro';
+import PropertyCard from '../../components/ui/PropertyCard.astro';
+import QuestionTile from '../../components/ui/QuestionTile.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../lib/site';
+const prop = await site('property');
+const faq = await site('faq');
+const L = prop.labels;
+const items = (await getCollection('properties')).sort((a, b) => a.data.number.localeCompare(b.data.number)).slice(0, 8);
+const categories = [...new Set(items.map((p) => p.data.category))].sort((a, b) => (a === 'for rent' ? -1 : 1));
+---
+<Base
+  title="Properties for Sale — Marby Real Estate"
+  description="Browse our exclusive selection of luxury homes, apartments, and estates. Filter by location, size, and price to find the property that fits your vision."
+>
+  <section class="phero" data-dark>
+    <img class="phero__bg" src={prop.hero.image} alt="" />
+    <div class="phero__blur" aria-hidden="true"></div>
+    <div class="container phero__inner">
+      <h1 class="t-h1 c-50" data-appear="mount">{prop.hero.title}</h1>
+    </div>
+  </section>
+
+  <section class="plist" data-filter>
+    <div class="container plist__inner">
+      <div class="plist__bar">
+        <div class="plist__tabs" role="group" aria-label="Filter by category" data-appear style="--appear-delay:0.2s">
+          <button class="tab" type="button" data-filter-tab="" aria-pressed="true">{L.all}</button>
+          {categories.map((c) => <button class="tab" type="button" data-filter-tab={c} aria-pressed="false">{c}</button>)}
+        </div>
+        <label class="plist__search" data-appear style="--appear-delay:0.3s">
+          <span class="visually-hidden">Search properties</span>
+          <Icon name="search" class="plist__search-icon" />
+          <input type="search" placeholder={L.search} data-filter-search />
+        </label>
+      </div>
+      <div class="plist__grid" data-appear style="--appear-delay:0.4s">
+        {items.map((p, i) => <PropertyCard p={p} eager={i < 2} />)}
+        <p class="t-body-lg plist__empty" data-filter-empty hidden>{prop.empty}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pfaq">
+    <div class="pfaq__inner">
+      <div class="pfaq__head">
+        <div class="pfaq__title">
+          <p class="t-caption2 c-500" data-appear>{faq.gridLabel}</p>
+          <h2 class="t-h1" data-appear style="--appear-delay:0.1s">{faq.title}</h2>
+        </div>
+        <p class="t-body-sm pfaq__text" data-appear style="--appear-delay:0.2s">{faq.text}</p>
+      </div>
+      <div class="pfaq__grid" data-accordion>
+        {faq.property.map((it: any, i: number) => <QuestionTile n={i + 1} q={it.q} a={it.a} delay={0.3 + i * 0.1} />)}
+        <div class="pfaq__contact" data-appear style={`--appear-delay:${0.3 + faq.property.length * 0.1}s`}>
+          <p class="t-body-lg">{faq.gridContact}</p>
+          <Btn label={faq.cta.label} href={faq.cta.href} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .phero { position: relative; height: 400px; overflow: clip; display: flex; align-items: flex-end; justify-content: center; }
+  .phero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .phero__blur { position: absolute; inset: auto 0 0; height: 200px; background: var(--glass-warm); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+  .phero__inner { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; padding-bottom: 20px; }
+
+  .plist { padding-block: 80px; overflow: clip; }
+  .plist__inner { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+  .plist__bar { width: 100%; display: flex; align-items: center; gap: 8px; }
+  .plist__tabs { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .plist__search { position: relative; width: 180px; display: flex; }
+  .plist__search :global(.plist__search-icon) { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: var(--ink-500); pointer-events: none; }
+  .plist__search input {
+    width: 100%;
+    height: 32px;
+    padding: 4px 0 4px 30px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--ink-50);
+    box-shadow: inset 0 0 0 1px var(--ink-200);
+    color: var(--ink-900);
+    font-size: 16px;
+    line-height: 1.2;
+    outline: none;
+  }
+  .plist__search input::placeholder { color: var(--ink-500); }
+  .plist__search input:focus { box-shadow: inset 0 0 0 1px var(--ink-950); }
+  .plist__grid { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .plist__grid > :global([hidden]) { display: none; }
+  .plist__empty { grid-column: 1 / -1; min-height: 300px; display: grid; place-items: center; }
+
+  .pfaq { width: 1200px; max-width: 100%; margin-inline: auto; padding-block: 80px; background: var(--white); }
+  .pfaq__inner { padding: 0 20px; display: flex; flex-direction: column; gap: 40px; }
+  .pfaq__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+  .pfaq__title { flex: 1; max-width: 460px; display: flex; flex-direction: column; gap: 12px; }
+  .pfaq__text { flex: 1; max-width: 460px; }
+  .pfaq__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .pfaq__contact { height: 362px; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 20px; }
+  .pfaq__contact p { max-width: 341px; }
+
+  @media (max-width: 1199.98px) {
+    .plist, .pfaq { padding-block: 40px; }
+    .pfaq__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 809.98px) {
+    .plist__bar { flex-direction: column-reverse; align-items: stretch; gap: 20px; }
+    .plist__search { width: 100%; }
+    .plist__search input { height: 42px; }
+    .plist__tabs .tab { box-shadow: inset 0 0 0 1px var(--ink-200); }
+    .plist__grid { grid-template-columns: 1fr; }
+    .pfaq__head { flex-direction: column; align-items: flex-start; }
+    .pfaq__title, .pfaq__text { max-width: none; width: 100%; }
+    .pfaq__grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import '@fontsource/urbanist/400.css';
+import '@fontsource/urbanist/500.css';
+import '@fontsource/onest/400.css';
+import '@fontsource/onest/500.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import StoreBadge from '../components/StoreBadge.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  withForm?: boolean;
+  noindex?: boolean;
+}
+const { title, description, image = '/assets/site/TBN2T3SDKf7U2Zk9enRTbFXuNo.webp', withForm = true, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const analytics = import.meta.env.PUBLIC_VERCEL_ANALYTICS === 'true';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer withForm={withForm} />
+    <StoreBadge />
+    <script>
+      import '../scripts/entry';
+    </script>
+    {analytics && <Analytics />}
+    {analytics && <SpeedInsights />}
+  </body>
+</html>

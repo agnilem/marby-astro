@@ -1,0 +1,53 @@
+---
+import Btn from '../Btn.astro';
+import { site } from '../../lib/site';
+const { about } = await site('home');
+---
+<section class="about section">
+  <div class="container about__inner">
+    <div class="about__top">
+      <div class="about__col">
+        <p class="t-caption2" data-appear>{about.label}</p>
+        <img class="about__img" src={about.image} alt={about.imageAlt} width="473" height="234" loading="lazy" data-appear style="--appear-delay:0.1s;--appear-dur:var(--spring-04-dur);--appear-ease:var(--spring-04)" />
+      </div>
+      <div class="about__col about__col--text">
+        <h2 class="t-h2" data-appear style="--appear-delay:0.2s">{about.title}</h2>
+        <p class="t-body-sm" data-appear style="--appear-delay:0.3s">{about.text}</p>
+        <div data-appear style="--appear-delay:0.4s"><Btn label={about.cta.label} href={about.cta.href} /></div>
+      </div>
+    </div>
+    <div class="about__stats">
+      {about.stats.map((s: any, i: number) => (
+        <div class="stat" data-appear style={`--appear-delay:${0.5 + i * 0.1}s`}>
+          <p class="stat__label t-caption2">{s.label}</p>
+          <div class="stat__row">
+            <p class="t-h2 stat__value">{s.value}</p>
+            <p class="t-caption">{s.index}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .about { background: var(--white); }
+  .about__inner { display: flex; flex-direction: column; gap: 40px; }
+  .about__top { display: flex; gap: 20px; }
+  .about__col { flex: 1 1 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .about__col--text { max-width: 460px; }
+  .about__img { width: 473px; max-width: 100%; height: 234px; object-fit: cover; border-radius: 8px; }
+  .about__stats { display: flex; gap: 20px; }
+  .stat { flex: 1 1 0; display: flex; flex-direction: column; gap: 80px; padding: 20px; border-radius: 8px; background: var(--ink-50); }
+  .stat__label { padding-bottom: 20px; box-shadow: inset 0 -1px 0 var(--ink-200); }
+  .stat__row { display: flex; align-items: flex-end; gap: 80px; }
+  .stat__value { flex: 1; }
+  @media (max-width: 1199.98px) {
+    .about__top { flex-direction: column; }
+  }
+  @media (max-width: 809.98px) {
+    .about__col--text { max-width: none; }
+    .about__img { width: 100%; }
+    .about__stats { flex-direction: column; }
+    .stat { width: 100%; }
+  }
+</style>

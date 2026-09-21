@@ -1,0 +1,60 @@
+---
+import { site } from '../../lib/site';
+const { beliefs } = await site('about');
+---
+<section class="beliefs">
+  <div class="beliefs__inner">
+    <div class="beliefs__head">
+      <p class="t-caption2" data-appear>{beliefs.label}</p>
+      <h2 class="t-h2" data-appear style="--appear-delay:0.1s">{beliefs.title}</h2>
+    </div>
+    <div class="beliefs__body" data-appear style="--appear-delay:0.2s">
+      <div class="beliefs__sticky">
+        <img src={beliefs.image} alt={beliefs.imageAlt} loading="lazy" />
+      </div>
+      <div class="beliefs__cards">
+        {beliefs.items.map((b: any) => (
+          <div class="scard">
+            <p class="t-caption">{b.label}</p>
+            <h3 class="t-h4">{b.title}</h3>
+            <div class="scard__text"><p class="t-body-sm">{b.text}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .beliefs { background: var(--white); padding: 80px 20px; }
+  .beliefs__inner { max-width: var(--container); margin-inline: auto; display: flex; flex-direction: column; gap: 40px; }
+  .beliefs__head { max-width: 460px; display: flex; flex-direction: column; gap: 12px; }
+  .beliefs__body { display: flex; align-items: flex-start; gap: 20px; }
+  .beliefs__sticky { flex: 1 1 0; min-width: 0; height: 500px; position: sticky; top: 120px; overflow: hidden; }
+  .beliefs__sticky img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; }
+  .beliefs__cards { display: flex; flex-direction: column; gap: 20px; }
+  .scard {
+    width: 460px;
+    height: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--ink-50);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .scard__text { flex: 1; display: flex; align-items: flex-end; }
+  @media (max-width: 1199.98px) {
+    .beliefs { padding-block: 40px; }
+    .beliefs__cards { flex: 1 1 0; min-width: 0; }
+    .scard { width: 100%; }
+  }
+  @media (max-width: 809.98px) {
+    .beliefs__body { flex-direction: column; align-items: stretch; }
+    .beliefs__sticky { position: relative; top: auto; flex: none; }
+    .beliefs__cards { overflow: clip; }
+    .scard { position: sticky; }
+    .scard:nth-child(1) { top: 100px; }
+    .scard:nth-child(2) { top: 105px; }
+    .scard:nth-child(3) { top: 110px; }
+  }
+</style>

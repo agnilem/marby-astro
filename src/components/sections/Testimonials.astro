@@ -1,0 +1,72 @@
+---
+import Icon from '../Icon.astro';
+import { site } from '../../lib/site';
+const { testimonials } = await site('home');
+const n = testimonials.items.length;
+---
+<section class="reviews">
+  <div class="container reviews__inner">
+    <p class="t-caption2" data-appear>{testimonials.label}</p>
+    <div class="reviews__slider" data-reviews>
+      <div class="reviews__slides">
+        {testimonials.items.map((r: any, i: number) => (
+          <article class:list={['review', { 'is-active': i === 0 }]} data-review aria-hidden={i !== 0 ? 'true' : 'false'}>
+            <div class="review__images">
+              <div class="review__stack">
+                <img class="review__img review__img--grow" src={r.images[0]} alt="" loading="lazy" />
+                <img class="review__img review__img--small" src={r.images[1]} alt="" loading="lazy" />
+              </div>
+              <img class="review__img review__img--tall" src={r.images[2]} alt="" loading="lazy" />
+            </div>
+            <div class="review__content">
+              <blockquote class="t-h5 review__quote">{r.quote}</blockquote>
+              <div class="review__who">
+                <p class="t-body-lg">{r.name}</p>
+                <p class="review__loc t-caption"><Icon name="pin" class="c-600" />{r.location}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="reviews__progress">
+        <div class="reviews__bars">
+          {testimonials.items.map((_: any, i: number) => (
+            <button class:list={['reviews__bar', { 'is-active': i === 0 }]} type="button" aria-label={`Show review ${i + 1}`} data-review-bar><span></span></button>
+          ))}
+        </div>
+        <p class="reviews__count">/{n}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .reviews { background: var(--white); padding-block: 80px; }
+  .reviews__inner { display: flex; flex-direction: column; gap: 40px; overflow: clip; }
+  .reviews__slider { width: 100%; max-width: 1160px; margin-inline: auto; display: flex; flex-direction: column; gap: 20px; }
+  .reviews__slides { display: grid; }
+  .review { grid-area: 1 / 1; display: flex; align-items: center; gap: 20px; visibility: hidden; }
+  .review.is-active { visibility: visible; }
+  .review__images { flex: 1 1 0; min-width: 0; height: 345px; display: flex; gap: 10px; overflow: clip; }
+  .review__stack { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .review__img { width: 100%; object-fit: cover; border-radius: 8px; min-height: 0; }
+  .review__img--grow { flex: 1 1 0; }
+  .review__img--small { height: 180px; flex: none; }
+  .review__img--tall { flex: 1 1 0; min-width: 0; height: 100%; }
+  .review__content { flex: 1 1 0; min-width: 0; height: 346px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; }
+  .review__quote { margin: 0; }
+  .review__who { min-height: 82px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
+  .review__loc { display: flex; align-items: center; gap: 4px; }
+  .reviews__progress { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; }
+  .reviews__bars { width: 100%; display: flex; gap: 4px; }
+  .reviews__bar { flex: 1; padding: 8px 0; cursor: pointer; }
+  .reviews__bar span { display: block; height: 1px; background: var(--ink-200); }
+  .reviews__bar.is-active span { background: var(--ink-900); }
+  .reviews__count { font-family: var(--font-caption); font-size: 14px; line-height: 1.2; color: var(--ink-500); }
+  @media (max-width: 1199.98px) { .reviews { padding-block: 40px; } }
+  @media (max-width: 809.98px) {
+    .review { flex-direction: column; align-items: stretch; }
+    .review__images { flex: none; height: 368px; }
+    .review__content { flex: none; gap: 20px; }
+    .review__quote { padding-bottom: 20px; }
+  }
+</style>

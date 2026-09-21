@@ -1,0 +1,178 @@
+---
+import Btn from './Btn.astro';
+import Icon from './Icon.astro';
+import { site } from '../lib/site';
+
+const s = await site('settings');
+---
+<!--
+  Sticky bar, 68px, transparent. Clicking anywhere on it except the caption
+  link and the consultation button opens the menu, as in the original.
+  The caption flips light/dark depending on what is underneath (nav.ts).
+-->
+<header class="nav" data-nav>
+  <div class="nav__bar">
+    <div class="nav__col nav__col--menu">
+      <button class="chip" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-menu-open>
+        <Icon name="menu" />
+      </button>
+    </div>
+    <a class="nav__col nav__col--tag" href="/" data-stop>
+      <span class="nav__tag t-caption2" data-invert>{s.tagline}</span>
+    </a>
+    <div class="nav__col nav__col--cta" data-stop>
+      <Btn label={s.consultation.label} href={s.consultation.href} />
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-menu>
+  <div class="menu__top">
+    <div class="menu__brand">
+      <button class="chip" type="button" aria-label="Close menu" data-menu-close>
+        <Icon name="close" />
+      </button>
+      <span class="t-h5">{s.brand}</span>
+    </div>
+    <div class="menu__top-cta"><Btn label={s.consultation.label} href={s.consultation.href} /></div>
+  </div>
+  <nav class="menu__list" aria-label="Main">
+    {s.menu.map((item: any, i: number) => (
+      <a class="menu__item t-h2" href={item.href} style={`--d:${[0.15, 0.15, 0.25, 0.35, 0.45][i] ?? 0.45}s`}>{item.label}</a>
+    ))}
+    <div class="menu__socials" style="--d:0.55s">
+      {s.socials.map((x: any) => (
+        <a class="menu__social t-caption2" href={x.href} target="_blank" rel="noreferrer">{x.label}</a>
+      ))}
+    </div>
+    <div class="menu__bottom-cta"><Btn label={s.consultation.label} href={s.consultation.href} /></div>
+  </nav>
+</div>
+
+<style>
+  .nav { position: sticky; top: 0; z-index: 5; cursor: pointer; }
+  .nav__bar {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .nav__col { flex: 1 1 0; display: flex; }
+  .nav__col--tag { justify-content: center; }
+  .nav__col--cta { justify-content: flex-end; }
+  .nav__tag {
+    width: 162px;
+    text-align: center;
+    color: rgb(20, 20, 20);
+    transition: color 0.2s ease;
+  }
+  .nav__tag.is-light { color: var(--ink-50); }
+
+  .chip {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 28px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--ink-900);
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  @media (max-width: 809.98px) {
+    .nav__bar { align-items: center; justify-content: space-between; }
+    .nav__col--menu { order: 2; justify-content: flex-end; }
+    .nav__col--tag { order: 1; justify-content: flex-start; }
+    .nav__tag { width: 100%; text-align: left; }
+    .nav__col--cta { display: none; }
+  }
+
+  /* ---------- overlay menu ---------- */
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background: var(--ink-50);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .menu[hidden] { display: none; }
+  .menu__top {
+    position: absolute;
+    inset: 0 0 auto 0;
+    max-width: 1160px;
+    margin-inline: auto;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .menu__brand { display: flex; align-items: flex-start; gap: 10px; }
+  .menu__list {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-block: 90px;
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  .menu.is-open .menu__list {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--spring-05-dur) var(--spring-05), transform var(--spring-05-dur) var(--spring-05);
+  }
+  .menu__item {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    color: var(--ink-900);
+    border-bottom: 1px solid transparent;
+    transition: padding var(--spring-04-dur) var(--spring-04), color var(--spring-04-dur) var(--spring-04), border-color var(--spring-04-dur) var(--spring-04);
+  }
+  .menu__item,
+  .menu__socials {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .menu__socials { transform: translateY(10px); }
+  .menu.is-open .menu__item,
+  .menu.is-open .menu__socials {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--spring-055-dur) var(--spring-055) var(--d),
+      transform var(--spring-055-dur) var(--spring-055) var(--d),
+      padding var(--spring-04-dur) var(--spring-04),
+      color var(--spring-04-dur) var(--spring-04),
+      border-color var(--spring-04-dur) var(--spring-04);
+  }
+  @media (hover: hover) and (min-width: 810px) {
+    .menu__item:hover { padding-left: 12px; color: var(--ink-600); border-color: var(--ink-600); }
+  }
+  .menu__socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 20px;
+  }
+  .menu__social { color: var(--ink-900); transition: color var(--spring-04-dur) var(--spring-04); }
+  .menu__social:hover { color: var(--ink-500); }
+  .menu__bottom-cta { display: none; }
+
+  @media (max-width: 809.98px) {
+    .menu__top { padding: 16px; }
+    .menu__brand { flex: 1; flex-direction: row-reverse; justify-content: space-between; align-items: center; }
+    .menu__top-cta { display: none; }
+    .menu__list { padding-left: 20px; }
+    .menu__bottom-cta { display: flex; }
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import menu from '../icons/menu.svg?raw';
+import arrow from '../icons/arrow.svg?raw';
+import check from '../icons/check.svg?raw';
+import plus from '../icons/plus.svg?raw';
+import pin from '../icons/pin.svg?raw';
+import search from '../icons/search.svg?raw';
+
+const close =
+  '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>';
+const icons = { menu, arrow, check, plus, pin, search, close };
+
+interface Props { name: keyof typeof icons; size?: number; class?: string }
+const { name, size = 16, class: cls } = Astro.props;
+const svg = icons[name].replace('<svg', `<svg width="${size}" height="${size}" aria-hidden="true" focusable="false"`);
+---
+<span class:list={['icon', cls]} style={`width:${size}px;height:${size}px`} set:html={svg} />
+<style>
+  .icon { display: inline-grid; place-items: center; flex: none; line-height: 0; }
+  .icon :global(svg) { width: 100%; height: 100%; }
+</style>

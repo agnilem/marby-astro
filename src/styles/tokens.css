@@ -1,0 +1,96 @@
+/*
+ * Marby design tokens.
+ * Colours, easings and the type scale, read from the original design's
+ * colour styles and text presets. Breakpoints: desktop >= 1200px,
+ * tablet 810-1199px, phone < 810px.
+ */
+:root {
+  /* colour */
+  --ink-950: rgb(20, 27, 52);
+  --ink-900: rgb(27, 27, 40);
+  --ink-800: rgb(37, 37, 48);
+  --ink-700: rgb(56, 56, 68);
+  --ink-600: rgb(81, 81, 95);
+  --ink-500: rgb(110, 110, 126);
+  --ink-400: rgb(146, 146, 160);
+  --ink-300: rgb(180, 180, 191);
+  --ink-200: rgb(213, 213, 219);
+  --ink-50: rgb(245, 245, 246);
+  --white: rgb(255, 255, 255);
+  --ink-950-15: rgba(20, 27, 52, 0.15);
+  --ink-50-20: rgba(245, 245, 246, 0.2);
+  --error: rgb(251, 56, 88);
+
+  /* glass panels (feature cards, team cards, form, offices) */
+  --glass-cool: linear-gradient(180deg, rgba(20, 27, 52, 0) 0%, rgba(20, 27, 52, 0.15) 100%);
+  --glass-warm: linear-gradient(180deg, rgba(27, 27, 40, 0) 0%, rgba(27, 27, 40, 0.15) 100%);
+
+  /* fonts */
+  --font-sans: 'Urbanist', system-ui, sans-serif;
+  --font-caption: 'Onest', system-ui, sans-serif;
+
+  /* easing */
+  --ease-appear: cubic-bezier(0.12, 0.23, 0.5, 1);
+  --ease-inout: cubic-bezier(0.44, 0, 0.56, 1);
+  --ease-accordion: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-badge: cubic-bezier(0.77, 0, 0.17, 1);
+  --ease-overlay: cubic-bezier(0.5, 0, 0.88, 0.77);
+  /* springs, solved from duration + bounce and sampled into linear() */
+  --spring-04: linear(0, 0.015, 0.055, 0.112, 0.18, 0.254, 0.332, 0.409, 0.483, 0.554, 0.619, 0.679, 0.733, 0.781, 0.823, 0.86, 0.891, 0.918, 0.94, 0.958, 0.973, 0.985, 0.994, 1.001, 1.007, 1.01, 1.013, 1.014, 1.015, 1.015, 1.015, 1.014, 1.013, 1.012, 1.011, 1.01, 1.009, 1.007, 1.006, 1.005, 1);
+  --spring-04-dur: 0.325s;
+  --spring-05: linear(0, 0.014, 0.053, 0.108, 0.177, 0.253, 0.332, 0.413, 0.492, 0.568, 0.639, 0.705, 0.764, 0.817, 0.863, 0.903, 0.937, 0.965, 0.988, 1.006, 1.02, 1.031, 1.038, 1.043, 1.045, 1.046, 1.045, 1.043, 1.041, 1.038, 1.034, 1.031, 1.027, 1.023, 1.02, 1.016, 1.013, 1.011, 1.008, 1.006, 1);
+  --spring-05-dur: 0.358s;
+  --spring-055: linear(0, 0.015, 0.055, 0.112, 0.181, 0.257, 0.337, 0.416, 0.493, 0.567, 0.635, 0.698, 0.754, 0.804, 0.848, 0.885, 0.917, 0.944, 0.966, 0.984, 0.998, 1.008, 1.016, 1.022, 1.026, 1.028, 1.028, 1.028, 1.027, 1.026, 1.024, 1.022, 1.019, 1.017, 1.015, 1.013, 1.011, 1.009, 1.007, 1.006, 1);
+  --spring-055-dur: 0.425s;
+
+  /* layout */
+  --container: 1240px;
+  --gutter: 20px;
+  --section-y: 40px;
+  --nav-h: 68px;
+
+  /* type scale (phone first) */
+  --h1: 32px;
+  --h2: 30px;
+  --h3: 26px;
+  --h4: 22px;
+  --h5: 18px;
+  --h6: 16px;
+  --body-lg: 18px;
+  --body: 16px;
+  --body-sm: 14px;
+  --caption: 12px;
+  --caption2: 12px;
+  --wordmark: 80px;
+}
+
+@media (min-width: 810px) {
+  :root {
+    --h1: 32px;
+    --h2: 38px;
+    --h3: 32px;
+    --h4: 26px;
+    --h5: 20px;
+    --h6: 18px;
+    --body-lg: 14px;
+    --caption: 10px;
+    --caption2: 10px;
+    --wordmark: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --section-y: 80px;
+    --h1: 56px;
+    --h2: 48px;
+    --h3: 40px;
+    --h4: 32px;
+    --h5: 24px;
+    --h6: 20px;
+    --body-lg: 18px;
+    --caption: 12px;
+    --caption2: 12px;
+    --wordmark: 280px;
+  }
+}

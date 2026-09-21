@@ -1,0 +1,62 @@
+---
+import { site } from '../../lib/site';
+const { years } = await site('about');
+---
+<section class="years">
+  <div class="years__inner">
+    <div class="years__head">
+      <p class="t-caption2 years__label" data-appear>{years.label}</p>
+      <p class="t-body-sm years__text" data-appear style="--appear-delay:0.1s">{years.text}</p>
+    </div>
+    <div class="years__row">
+      {years.milestones.map((m: any, i: number) => (
+        <div class="mcard" data-appear style={`--appear-delay:${0.2 + i * 0.1}s`}>
+          <p class="t-caption2 mcard__title">{m.title}</p>
+          <p class="t-body-sm mcard__text">{m.text}</p>
+          <p class="t-h2">{m.year}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .years { background: var(--white); padding: 80px 20px; }
+  .years__inner { max-width: var(--container); margin-inline: auto; display: flex; flex-direction: column; gap: 40px; }
+  .years__head { display: flex; gap: 20px; }
+  .years__label { flex: 1; }
+  .years__text { flex: 1; max-width: 460px; }
+  .years__row { display: flex; gap: 20px; }
+  .mcard {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 230px;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--ink-50);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    overflow: hidden;
+  }
+  .mcard__title { padding-bottom: 20px; box-shadow: inset 0 -1px 0 var(--ink-200); }
+  .mcard__text { display: none; }
+  .mcard > .t-h2 { margin-top: auto; }
+  @media (hover: hover) and (min-width: 1200px) {
+    .mcard:hover .mcard__title { display: none; }
+    .mcard:hover .mcard__text { display: block; animation: fade-in 0.4s var(--ease-inout); }
+  }
+  @keyframes fade-in { from { opacity: 0; } }
+  @media (max-width: 1199.98px) {
+    .years { padding-block: 40px; }
+    .years__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mcard__title { display: none; }
+    .mcard__text { display: block; }
+  }
+  @media (max-width: 809.98px) {
+    .years__head { flex-direction: column; }
+    .years__text { max-width: none; }
+    .years__row { display: flex; flex-direction: column; }
+    .mcard { flex: none; width: 100%; }
+  }
+</style>

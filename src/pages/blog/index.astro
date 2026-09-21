@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/sections/PageHeader.astro';
+import ArticleCard from '../../components/ui/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../lib/site';
+const blog = await site('blog');
+const posts = (await getCollection('blog')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base
+  title="Real Estate Insights & News — Marby Blog"
+  description="Expert advice on buying, selling, and investing in real estate. Stay up to date with market trends, property guides, and lifestyle inspiration from Marby."
+>
+  <PageHeader label={blog.header.label} title={blog.header.title} labelClass="t-caption" />
+  <section class="bgrid" data-filter>
+    <div class="bgrid__tabs" data-appear="mount" style="--appear-delay:0.4s;--appear-y:150px" role="group" aria-label="Filter by category">
+      <button class="tab" type="button" data-filter-tab="" aria-pressed="true">{blog.all}</button>
+      {blog.categories.map((c: string) => <button class="tab" type="button" data-filter-tab={c} aria-pressed="false">{c}</button>)}
+    </div>
+    <div class="bgrid__list" data-appear="mount" style="--appear-delay:0.6s;--appear-y:150px">
+      {posts.map((p) => <ArticleCard post={p} />)}
+      <p class="t-body-lg c-900 bgrid__empty" data-filter-empty hidden>{blog.empty}</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .bgrid { width: 1200px; max-width: 100%; margin-inline: auto; padding: 20px 20px 80px; display: flex; flex-direction: column; gap: 40px; }
+  .bgrid__tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .bgrid__list { display: flex; flex-wrap: wrap; gap: 20px; }
+  .bgrid__list > :global(.acard) { flex: 1 1 375px; max-width: 570px; }
+  .bgrid__list > :global(.acard[hidden]) { display: none; }
+  .bgrid__empty { width: 100%; padding: 10px; text-align: center; }
+  @media (max-width: 1199.98px) {
+    .bgrid { padding-bottom: 40px; }
+    .bgrid__list > :global(.acard) { max-width: none; }
+  }
+  @media (max-width: 809.98px) {
+    .bgrid__tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+    .bgrid__list { flex-direction: column; }
+    .bgrid__list > :global(.acard) { flex: none; width: 100%; }
+  }
+</style>

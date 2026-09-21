@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ui/ArticleCard.astro';
+import { getCollection, render } from 'astro:content';
+import { site, formatDate } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const blog = await site('blog');
+const related = (await getCollection('blog'))
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 2);
+const d = post.data;
+---
+<Base title={`${d.title} — Marby Blog`} description={`Read ${d.title} from the Marby real estate blog.`} image={d.image}>
+  <article>
+    <header class="ahead">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a class="t-body-sm link" href="/blog">{blog.crumb}</a>
+        <span class="t-body-sm c-300">/</span>
+        <span class="t-body-sm c-900 crumbs__current">{d.title}</span>
+      </nav>
+      <div class="ahead__text">
+        <h1 class="t-h1 ahead__title" data-appear="mount">{d.title}</h1>
+        <div class="ahead__meta">
+          <p class="t-body" data-appear="mount" style="--appear-delay:0.1s">{d.category}</p>
+          <span class="ahead__dot" data-appear="mount" style="--appear-delay:0.2s"></span>
+          <p class="t-body-sm" data-appear="mount" style="--appear-delay:0.3s"><time datetime={d.date.toISOString()}>{formatDate(d.date)}</time></p>
+        </div>
+      </div>
+      <img class="ahead__banner" src={d.image} alt={d.imageAlt} data-appear="mount" style="--appear-delay:0.4s" />
+    </header>
+    <section class="abody">
+      <div class="prose abody__content" data-appear><Content /></div>
+    </section>
+  </article>
+  <section class="related">
+    <div class="related__head">
+      <p class="t-caption2 c-500" data-appear>{blog.related.label}</p>
+      <h2 class="t-h2 related__title" data-appear style="--appear-delay:0.1s">{blog.related.title}</h2>
+    </div>
+    <div class="related__list" data-appear style="--appear-delay:0.3s">
+      {related.map((p) => <ArticleCard post={p} />)}
+    </div>
+  </section>
+</Base>
+<style>
+  .ahead { width: 1200px; max-width: 100%; margin-inline: auto; padding: 80px 20px; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+  .crumbs { width: 100%; max-width: var(--container); display: flex; justify-content: center; align-items: center; gap: 4px; }
+  .crumbs__current { max-width: 295px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ahead__text { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .ahead__title { max-width: 700px; text-align: center; }
+  .ahead__meta { display: flex; align-items: center; gap: 8px; }
+  .ahead__dot { width: 2px; height: 2px; border-radius: 999px; background: var(--ink-600); }
+  .ahead__banner { width: 100%; height: 480px; object-fit: cover; border-radius: 24px; }
+  .abody { padding: 0 20px 80px; display: flex; justify-content: center; }
+  .abody__content { width: 100%; max-width: 700px; }
+  .related { width: 1200px; max-width: 100%; margin-inline: auto; padding: 20px 20px 80px; display: flex; flex-direction: column; gap: 40px; }
+  .related__head { display: flex; flex-direction: column; gap: 12px; }
+  .related__title { width: 460px; max-width: 100%; }
+  .related__list { display: flex; flex-wrap: wrap; gap: 20px; }
+  .related__list > :global(.acard) { flex: 1 1 375px; max-width: 570px; }
+  @media (max-width: 1199.98px) {
+    .ahead { padding-block: 40px; }
+    .abody, .related { padding-bottom: 40px; }
+    .related__list > :global(.acard) { max-width: none; }
+  }
+  @media (max-width: 809.98px) {
+    .crumbs__current { max-width: none; }
+    .related__list { flex-direction: column; }
+    .related__list > :global(.acard) { flex: none; width: 100%; }
+  }
+</style>

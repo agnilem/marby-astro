@@ -1,0 +1,25 @@
+---
+// Centred label + H1 used by About, Contact, Terms and Blog.
+interface Props { label: string; title: string | string[]; labelClass?: string }
+const { label, title, labelClass = 't-caption2' } = Astro.props;
+const lines = Array.isArray(title) ? title : [title];
+---
+<section class="phead">
+  <p class={labelClass} data-appear="mount">{label}</p>
+  <h1 class="t-h1 phead__title" data-appear="mount" style="--appear-delay:0.2s">
+    {lines.map((l, i) => <>{l}{i < lines.length - 1 && <br />}</>)}
+  </h1>
+</section>
+<style>
+  .phead {
+    position: relative;
+    z-index: 1;
+    background: var(--white);
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .phead__title { text-align: center; }
+  @media (max-width: 1199.98px) { .phead { padding-block: 40px; } }
+</style>

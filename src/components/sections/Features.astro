@@ -1,0 +1,71 @@
+---
+import Btn from '../Btn.astro';
+import { site } from '../../lib/site';
+const { features } = await site('home');
+---
+<section class="features" data-dark>
+  <img class="features__bg" src={features.image} alt="" loading="lazy" data-appear />
+  <div class="container features__inner">
+    <div class="features__head">
+      <div class="features__title">
+        <p class="t-caption2 c-200" data-appear>{features.label}</p>
+        <h2 class="t-h2 c-50" data-appear style="--appear-delay:0.1s">{features.title}</h2>
+      </div>
+      <div class="features__side">
+        <p class="t-body-sm c-200 balance features__text" data-appear style="--appear-delay:0.2s">{features.text}</p>
+        <div data-appear style="--appear-delay:0.3s"><Btn label={features.cta.label} href={features.cta.href} variant="secondary" /></div>
+      </div>
+    </div>
+    <div class="features__grid" data-appear style="--appear-delay:0.4s">
+      {features.items.map((f: any) => (
+        <div class="fcard">
+          <h3 class="t-h5 c-50">{f.title}</h3>
+          <p class="t-body-sm c-50 fcard__text">{f.text}</p>
+          <p class="t-caption c-50 fcard__num">{f.number}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .features { position: relative; overflow: clip; padding-block: 80px; }
+  .features__bg { position: absolute; inset: 1px 0 0; width: 100%; height: 100%; object-fit: cover; }
+  .features__inner { position: relative; display: flex; flex-direction: column; gap: 40px; }
+  .features__head { display: flex; align-items: flex-end; gap: 20px; }
+  .features__title { flex: 1 1 0; display: flex; flex-direction: column; gap: 12px; }
+  .features__title h2 { max-width: 460px; }
+  .features__side { flex: 1 1 0; max-width: 460px; display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+  .features__text { text-align: right; }
+  .features__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .fcard {
+    position: relative;
+    height: 213px;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--ink-50-20);
+    background: var(--glass-cool);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color var(--spring-04-dur) var(--spring-04);
+  }
+  .fcard__text { display: none; }
+  .fcard__num { text-align: right; }
+  @media (hover: hover) and (min-width: 1200px) {
+    .fcard:hover { background: var(--ink-900); }
+    .fcard:hover .fcard__text { display: block; }
+  }
+  @media (max-width: 1199.98px) {
+    .features__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fcard { background: var(--glass-warm); gap: 40px; }
+    .fcard__text { display: block; }
+  }
+  @media (max-width: 809.98px) {
+    .features__head { flex-direction: column; align-items: flex-start; }
+    .features__title, .features__side { width: 100%; max-width: none; }
+    .features__grid { grid-template-columns: 1fr; }
+  }
+</style>

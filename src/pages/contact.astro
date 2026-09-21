@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/sections/PageHeader.astro';
+import Offices from '../components/sections/Offices.astro';
+import Faq from '../components/sections/Faq.astro';
+import { site } from '../lib/site';
+const contact = await site('contact');
+---
+<Base
+  title="Contact Marby — Get in Touch"
+  description="Ready to find your next property? Reach out to the Marby team for a free consultation. We're here to guide you through every step of the process."
+>
+  <PageHeader label={contact.header.label} title={contact.header.title} />
+  <Offices />
+  <Faq />
+</Base>

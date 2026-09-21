@@ -1,0 +1,29 @@
+---
+import Btn from '../Btn.astro';
+import PropertyCard from '../ui/PropertyCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../lib/site';
+const { listings } = await site('home');
+const all = (await getCollection('properties')).sort((a, b) => a.data.number.localeCompare(b.data.number));
+const items = all.slice(0, listings.count);
+---
+<section class="listings">
+  <div class="container listings__inner">
+    <div class="section-head">
+      <div class="section-head__title">
+        <p class="t-caption2" data-appear>{listings.label}</p>
+        <h2 class="t-h2" data-appear style="--appear-delay:0.1s">{listings.title}</h2>
+      </div>
+      <div data-appear style="--appear-delay:0.2s"><Btn label={listings.cta.label} href={listings.cta.href} /></div>
+    </div>
+    <div class="listings__grid" data-appear style="--appear-delay:0.3s">
+      {items.map((p) => <PropertyCard p={p} />)}
+    </div>
+  </div>
+</section>
+<style>
+  .listings { background: var(--white); padding-block: 80px; }
+  .listings__inner { display: flex; flex-direction: column; gap: 40px; }
+  .listings__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  @media (max-width: 809.98px) { .listings__grid { grid-template-columns: 1fr; } }
+</style>

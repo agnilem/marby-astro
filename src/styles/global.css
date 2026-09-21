@@ -1,0 +1,198 @@
+@import './tokens.css';
+
+/* ---------- reset ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { -webkit-text-size-adjust: 100%; background: var(--white); }
+body {
+  font-family: var(--font-sans);
+  color: var(--ink-900);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'blwf', 'cv03', 'cv04', 'cv09', 'cv11';
+  overflow-x: clip;
+}
+h1, h2, h3, h4, h5, h6, p, figure, blockquote, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img, video, svg { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input, textarea { font: inherit; }
+:focus-visible { outline: 2px solid var(--ink-500); outline-offset: 2px; }
+
+/* ---------- layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.cover { width: 100%; height: 100%; object-fit: cover; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- type presets ---------- */
+.t-h1, .t-h2, .t-h3, .t-h4, .t-h5, .t-h6 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--ink-900);
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+.t-h1 { font-size: var(--h1); line-height: 1.2; }
+.t-h2 { font-size: var(--h2); line-height: 1.2; }
+.t-h3 { font-size: var(--h3); line-height: 1.25; }
+.t-h4 { font-size: var(--h4); line-height: 1.3; }
+.t-h5 { font-size: var(--h5); line-height: 1.2; }
+.t-h6 { font-size: var(--h6); line-height: 1.2; }
+.t-body-lg, .t-body, .t-body-sm, .t-caption, .t-caption2 {
+  font-weight: 400;
+  color: var(--ink-600);
+  letter-spacing: 0;
+}
+.t-body-lg { font-size: var(--body-lg); line-height: 1.15; }
+.t-body { font-size: var(--body); line-height: 1.2; }
+.t-body-sm { font-size: var(--body-sm); line-height: 1.1; }
+.t-caption { font-size: var(--caption); line-height: 1.2; }
+.t-caption2 {
+  font-family: var(--font-caption);
+  font-size: var(--caption2);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.balance { text-wrap: balance; }
+.c-900 { color: var(--ink-900); }
+.c-600 { color: var(--ink-600); }
+.c-500 { color: var(--ink-500); }
+.c-300 { color: var(--ink-300); }
+.c-200 { color: var(--ink-200); }
+.c-50 { color: var(--ink-50); }
+
+/* inline links inside body copy use the Link preset */
+.link { color: var(--ink-400); transition: color 0.2s ease; }
+.link:hover { color: var(--ink-900); }
+
+/* ---------- button (Buttons component) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  height: 28px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.btn__label {
+  font-family: var(--font-caption);
+  font-size: var(--caption2);
+  line-height: 1;
+  text-transform: uppercase;
+  user-select: none;
+}
+.btn__icon {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  transition: transform var(--spring-04-dur) var(--spring-04);
+}
+.btn__icon svg { width: 16px; height: 16px; }
+.btn--primary { background: var(--ink-900); color: var(--ink-50); }
+.btn--secondary { background: var(--ink-200); color: var(--ink-900); }
+.btn--icon { background: var(--ink-50); color: var(--ink-900); width: 32px; justify-content: center; }
+@media (hover: hover) and (min-width: 810px) {
+  .btn:hover .btn__icon,
+  .hover-target:hover .btn__icon { transform: rotate(45deg); }
+}
+
+/* ---------- appear effects ---------- */
+/*
+ * Elements with [data-appear] start hidden and are revealed by
+ * scripts/appear.js (in view, once) or on load ([data-appear="mount"]).
+ * Without JavaScript, or with reduced motion, everything renders in place.
+ */
+html.js [data-appear] {
+  opacity: 0;
+  transform: translate3d(0, var(--appear-y, 20px), 0) scale(var(--appear-scale, 1));
+}
+html.js [data-appear].is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--appear-dur, 0.4s) var(--appear-ease, var(--ease-appear)) var(--appear-delay, 0s),
+    transform var(--appear-dur, 0.4s) var(--appear-ease, var(--ease-appear)) var(--appear-delay, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-appear] { opacity: 1; transform: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* ---------- section shells ---------- */
+.section { position: relative; padding-block: var(--section-y); }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.section-head__title { display: flex; flex-direction: column; gap: 12px; max-width: 460px; }
+@media (max-width: 809.98px) {
+  .section-head { flex-direction: column; align-items: flex-start; justify-content: flex-start; }
+}
+
+/* glass panel (backdrop blur over photography) */
+.glass {
+  background: var(--glass-cool);
+  border: 1px solid var(--ink-50-20);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.scrim {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 105px;
+  background: var(--glass-warm);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+}
+
+/* rich text (property descriptions, articles) */
+.prose { color: var(--ink-600); font-size: var(--body); line-height: 1.2; }
+.prose > * + * { margin-top: 20px; }
+.prose > :is(h1, h2, h3, h4, h5, h6):not(:first-child) { margin-top: 40px; }
+.prose h2 { font-size: var(--h2); line-height: 1.2; }
+.prose h3 { font-size: var(--h3); line-height: 1.25; }
+.prose h4 { font-size: var(--h4); line-height: 1.3; }
+.prose h5 { font-size: var(--h5); line-height: 1.2; }
+.prose h2, .prose h3, .prose h4, .prose h5 { font-weight: 500; color: var(--ink-900); text-wrap: balance; }
+.prose ol { list-style: decimal; padding-left: 1.5em; }
+.prose ul { list-style: disc; padding-left: 1.5em; }
+.prose a { color: var(--ink-400); text-decoration: underline; }
+
+/* filter tabs (Blog Tabs / Property Tabs components) */
+.tab {
+  flex: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--ink-50);
+  color: var(--ink-600);
+  font-size: var(--body-sm);
+  line-height: 1.1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tab[aria-pressed='true'] { background: var(--ink-950); color: var(--ink-50); }
+@media (hover: hover) { .tab:hover { background: var(--ink-950); color: var(--ink-50); } }
+@media (max-width: 809.98px) { .tab { height: 42px; } }
