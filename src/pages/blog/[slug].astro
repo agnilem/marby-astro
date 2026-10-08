@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ui/ArticleCard.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { site, formatDate } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -9,7 +9,6 @@ export async function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 const { post } = Astro.props;
-const { Content } = await render(post);
 const blog = await site('blog');
 const related = (await getCollection('blog'))
   .filter((p) => p.id !== post.id)
@@ -36,7 +35,7 @@ const d = post.data;
       <img class="ahead__banner" src={d.image} alt={d.imageAlt} data-appear="mount" style="--appear-delay:0.4s" />
     </header>
     <section class="abody">
-      <div class="prose abody__content" data-appear><Content /></div>
+      <div class="prose abody__content" data-appear set:html={post.rendered?.html} />
     </section>
   </article>
   <section class="related">
@@ -51,8 +50,8 @@ const d = post.data;
 </Base>
 <style>
   .ahead { width: 1200px; max-width: 100%; margin-inline: auto; padding: 80px 20px; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-  .crumbs { width: 100%; max-width: var(--container); display: flex; justify-content: center; align-items: center; gap: 4px; }
-  .crumbs__current { max-width: 295px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ahead .crumbs { width: 100%; max-width: var(--container); display: flex; justify-content: center; align-items: center; gap: 4px; }
+  .ahead .crumbs__current { max-width: 295px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .ahead__text { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
   .ahead__title { max-width: 700px; text-align: center; }
   .ahead__meta { display: flex; align-items: center; gap: 8px; }
@@ -71,7 +70,7 @@ const d = post.data;
     .related__list > :global(.acard) { max-width: none; }
   }
   @media (max-width: 809.98px) {
-    .crumbs__current { max-width: none; }
+    .ahead .crumbs__current { max-width: none; }
     .related__list { flex-direction: column; }
     .related__list > :global(.acard) { flex: none; width: 100%; }
   }

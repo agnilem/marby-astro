@@ -1,8 +1,12 @@
-# Marby, an Astro real estate theme
+# Marby, a real estate theme for Astro and Next.js
 
 A quiet, editorial theme for boutique real estate agencies and brokerages: property listings with filters, detail pages with photo galleries, a blog, team and office pages. Static output, no UI framework: every interaction is a small vanilla TypeScript module.
 
-Live demo: [marby-astro.vercel.app](https://marby-astro.vercel.app)
+<!-- next -->
+The same site also ships as a **Next.js** app in [`next/`](next/) (Next.js 16, App Router, React 19, static export). It is generated from this Astro source and checked against it element by element on every page, so the two builds look and behave the same. Use whichever stack you prefer; [`next/README.md`](next/README.md) has its commands and file map.
+<!-- /next -->
+
+Live demo: [marby.startfrom.co](https://marby.startfrom.co) (Astro), [marby-next.startfrom.co](https://marby-next.startfrom.co) (Next.js)
 
 ## Features
 
@@ -76,6 +80,19 @@ All optional and off by default.
 | `PUBLIC_FORM_ENDPOINT` | URL the contact form posts to (Formspree, Basin, ...). Unset, the form only shows its states. |
 | `PUBLIC_VERCEL_ANALYTICS` | `true` loads Vercel Web Analytics and Speed Insights |
 | `PUBLIC_STORE_BADGE` | `true` shows the fixed store badge in the corner |
+
+<!-- next -->
+## Next.js version
+
+`next/` is a standalone Next.js app: `cd next && npm install && npm run dev`. Its pages, components, styles and copied content are generated from this Astro source, so make changes here and regenerate:
+
+```sh
+node tools/astro-to-next.mjs   # .astro -> .tsx, content, scripts, icons
+node tools/collect-css.mjs     # component styles -> next/src/styles/site.css
+```
+
+A few files in `next/` are written by hand because they have no Astro equivalent to convert: `src/layouts/Base.tsx`, `src/app/layout.tsx`, `src/app/Scripts.tsx`, `src/lib/content.ts` (Markdown collections), `src/app/sitemap.ts` and `src/app/robots.ts`. If you only use the Next.js build, you can also edit `next/` directly and ignore the Astro files.
+<!-- /next -->
 
 ## Deploy
 

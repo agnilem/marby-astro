@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Btn from '../../components/Btn.astro';
 import Icon from '../../components/Icon.astro';
 import Faq from '../../components/sections/Faq.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { site } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -11,7 +11,6 @@ export async function getStaticPaths() {
   return items.map((p) => ({ params: { slug: p.id }, props: { p } }));
 }
 const { p } = Astro.props;
-const { Content } = await render(p);
 const d = p.data;
 const prop = await site('property');
 const settings = await site('settings');
@@ -71,7 +70,7 @@ const map = `https://maps.google.com/maps?q=${encodeURIComponent(d.location)}&z=
             <a class="jump__link t-body-sm" href="#highlights">{L.highlights}</a>
             <a class="jump__link t-body-sm" href="#location">{L.locationTitle}</a>
           </nav>
-          <div class="prose pd__desc" id="overview" data-appear style="--appear-y:150px"><Content /></div>
+          <div class="prose pd__desc" id="overview" data-appear style="--appear-y:150px" set:html={p.rendered?.html} />
           <div class="pd__block" id="highlights" data-appear style="--appear-y:150px">
             <h2 class="t-h5 pd__label">{L.highlights}</h2>
             <ul class="hl">
@@ -146,8 +145,8 @@ const map = `https://maps.google.com/maps?q=${encodeURIComponent(d.location)}&z=
 
 <style>
   .pd { padding: 40px 20px 80px; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-  .crumbs { width: 100%; max-width: var(--container); display: flex; align-items: center; gap: 4px; }
-  .crumbs__current { max-width: 295px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pd .crumbs { width: 100%; max-width: var(--container); display: flex; align-items: center; gap: 4px; }
+  .pd .crumbs__current { max-width: 295px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pd__main { width: 100%; max-width: var(--container); display: flex; flex-direction: column; align-items: center; gap: 40px; }
   .pd__name { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 20px; border-radius: 8px; background: var(--ink-50); }
   .pd__name h1 { max-width: 600px; text-align: center; }
@@ -178,7 +177,7 @@ const map = `https://maps.google.com/maps?q=${encodeURIComponent(d.location)}&z=
   .specs__row:last-child { box-shadow: none; }
   .specs__row dt, .near__row dt { flex: 1; }
   .near__row { gap: 100px; }
-  dd { margin: 0; text-align: right; }
+  .pd dd { margin: 0; text-align: right; }
 
   .pd__content { width: 100%; display: flex; align-items: flex-start; justify-content: center; gap: 20px; }
   .pd__left { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 40px; }

@@ -1,0 +1,675 @@
+[
+  {
+    "id": "settings",
+    "brand": "marby",
+    "tagline": "Boutique residential brokerage",
+    "consultation": {
+      "label": "Get a consultation",
+      "href": "/contact"
+    },
+    "menu": [
+      {
+        "label": "HOME",
+        "href": "/"
+      },
+      {
+        "label": "ABOUT US",
+        "href": "/about-us"
+      },
+      {
+        "label": "PROPERTIES",
+        "href": "/property"
+      },
+      {
+        "label": "BLOG",
+        "href": "/blog"
+      },
+      {
+        "label": "CONTACT",
+        "href": "/contact"
+      }
+    ],
+    "socials": [
+      {
+        "label": "Twitter [ x ]",
+        "footerLabel": "Twitter [X]",
+        "href": "https://x.com"
+      },
+      {
+        "label": "Threads",
+        "footerLabel": "Threads",
+        "href": "https://www.threads.com"
+      },
+      {
+        "label": "Linkedin",
+        "footerLabel": "LinkedIn",
+        "href": "https://www.linkedin.com"
+      }
+    ],
+    "footer": {
+      "description": "A boutique brokerage founded in 2009, representing buyers and sellers of exceptional properties.",
+      "cta": {
+        "label": "Contact us",
+        "href": "/contact"
+      },
+      "columns": [
+        {
+          "title": "Quick links",
+          "links": [
+            {
+              "label": "About",
+              "href": "/about-us"
+            },
+            {
+              "label": "Properties",
+              "href": "/property"
+            },
+            {
+              "label": "Contact",
+              "href": "/contact"
+            }
+          ]
+        },
+        {
+          "title": "Quick links",
+          "links": [
+            {
+              "label": "Blog",
+              "href": "/blog"
+            },
+            {
+              "label": "404",
+              "href": "/404"
+            }
+          ]
+        }
+      ],
+      "legal": {
+        "label": "Terms & Conditions",
+        "href": "/terms-conditions"
+      },
+      "copyright": "© 2026 Marby. All rights reserved.",
+      "socialTitle": "Keep in touch"
+    },
+    "contact": {
+      "label": "[ CONTACT]",
+      "title": "find a home worth keeping",
+      "text": "No questionnaires. No automated funnels. A first conversation with a partner, at no cost and no obligation.",
+      "image": "/assets/site/tYCb9XTbk5zfiJN56V1w0PshME.webp",
+      "submit": "Send message",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Your message",
+        "success": "Thank you",
+        "error": "Something went wrong"
+      }
+    }
+  },
+  {
+    "id": "home",
+    "hero": {
+      "title": "marby",
+      "text": "Half of what we sell never reaches a public listing. A discreet residential brokerage representing buyers and sellers in New York, San Francisco, and London — by introduction since 2009.",
+      "video": "/assets/hero.mp4",
+      "poster": "/assets/site/TBN2T3SDKf7U2Zk9enRTbFXuNo.webp"
+    },
+    "about": {
+      "label": "[ ABOUT US]",
+      "image": "/assets/site/zoANF4gCl0veXWAJdOn0FvSQRJE.webp",
+      "imageAlt": "Editorial real estate image used on the homepage",
+      "title": "seventeen years, compounding quietly",
+      "text": "Marby was founded in 2009 with a quiet conviction that residential real estate had become too quick, too transactional, and too uniform. In our first year we represented eleven clients. In our most recent we represented forty-three. The work has grown only at the pace at which we could keep it considered.",
+      "cta": {
+        "label": "Read our story",
+        "href": "/about-us"
+      },
+      "stats": [
+        {
+          "label": "Advisors & specialists",
+          "value": "70+",
+          "index": "[01]"
+        },
+        {
+          "label": "Properties represented",
+          "value": "300+",
+          "index": "[02]"
+        },
+        {
+          "label": "Clients represented",
+          "value": "1450+",
+          "index": "[03]"
+        }
+      ]
+    },
+    "services": {
+      "label": "[ SERVICES ]",
+      "title": "what we do",
+      "items": [
+        {
+          "counter": "/1",
+          "label": "Property [ 01 ]",
+          "title": "buying",
+          "image": "/assets/site/qH5xVjb1S38d5caXLweD8Cz3ss.webp",
+          "text": "Buyer representation for clients acquiring a primary residence, a pied-à-terre, or a long-considered second home. We work to a brief — not a budget — and we are content to wait.",
+          "button": "for buyers",
+          "href": "/contact"
+        },
+        {
+          "counter": "/2",
+          "label": "Property [ 02 ]",
+          "title": "selling",
+          "image": "/assets/site/SipSQ6yub533CYugujIVuOQgNg.webp",
+          "text": "A sale conducted like a piece of editorial — photographed, written, and shown to the right people. We market least, and tend to sell closest to asking price.",
+          "button": "for sellers",
+          "href": "/contact"
+        },
+        {
+          "counter": "/3",
+          "label": "Property [ 03 ]",
+          "title": "management",
+          "image": "/assets/site/Yr2OlgPcPFVFicsRXPwO8x7NIzo.webp",
+          "text": "For clients with homes they live in part of the year — or rent only to people they would have over for dinner. We treat every property as if it were our own address.",
+          "button": "for owners",
+          "href": "/contact"
+        }
+      ]
+    },
+    "listings": {
+      "label": "[ PROJECTS ]",
+      "title": "featured listings",
+      "cta": {
+        "label": "view more",
+        "href": "/property"
+      },
+      "count": 4
+    },
+    "testimonials": {
+      "label": "[ Testimonials ]",
+      "items": [
+        {
+          "quote": "\"We'd been searching for the right property in Greenwich for almost two years. Marby came in, understood exactly what we were looking for, and within six weeks we were under contract on something better than we'd imagined.\"",
+          "name": "Daniel Forsythe",
+          "location": "East Side, LA",
+          "images": [
+            "/assets/site/dRuT2rBloAdrDAI6wQBcOmUAOI.webp",
+            "/assets/site/Zm4CCMAvJ2mRuZKcZYZIYVWrLg.webp",
+            "/assets/site/I9Fuu1jJsIscYQXIK7vu7gNijs.webp"
+          ]
+        },
+        {
+          "quote": "\"Sold our townhouse in the West Village through Marby after a recommendation from a friend. The editorial presentation they put together was stunning — professional photography, a proper campaign. We got three offers above asking in the first week.\"",
+          "name": "Emily Smith",
+          "location": "New York, NY",
+          "images": [
+            "/assets/site/dRuT2rBloAdrDAI6wQBcOmUAOI.webp",
+            "/assets/site/xtXfHVniXm6zJem4TQBrQJvEqI.webp",
+            "/assets/site/leouEp3HBZFGWCZo5Hkf0G6VI.webp"
+          ]
+        },
+        {
+          "quote": "\"We've worked with a lot of property managers over the years across our portfolio. Marby's management team is in a different league — proactive, transparent, and genuinely invested in the assets. Seventeen years of experience shows in how they operate day to day.\"",
+          "name": "Marcus & Lena Beaumont",
+          "location": "Holland Park, London",
+          "images": [
+            "/assets/site/xlb4YKaKhbeBkSUICa4Go9Nou4.webp",
+            "/assets/site/e3kgoVcf2GpLpcafviXykPDHr4.webp",
+            "/assets/site/8YFM45QURTBAaKLBoUiyVRtPhs.webp"
+          ]
+        }
+      ]
+    },
+    "features": {
+      "label": "[ FEATURES]",
+      "title": "we never compromise on",
+      "text": "Not bigger marketing or louder promises. Six small commitments, kept every time.",
+      "cta": {
+        "label": "contact us",
+        "href": "/contact"
+      },
+      "image": "/assets/site/FErs8IfWxpBcZKQWKJBGw7lGfc.webp",
+      "items": [
+        {
+          "title": "a small book",
+          "number": "[ 01 ]",
+          "text": "Each advisor carries six to ten mandates — not sixty. The difference shows in everything from a returned call to a closing."
+        },
+        {
+          "title": "off-market access",
+          "number": "[ 02 ]",
+          "text": "Roughly half of what changes hands at Marby never reaches a public portal. Discretion is not a feature — it is the practice."
+        },
+        {
+          "title": "editorial presentation",
+          "number": "[ 03 ]",
+          "text": "In-house photography, architectural floor plans, and copy written by people who have done it before. We market homes the way magazines used to."
+        },
+        {
+          "title": "market intelligence",
+          "number": "[ 04 ]",
+          "text": "Quarterly briefings on the markets that matter to you — written, not generated. We track what sold, why, and what it tells us."
+        },
+        {
+          "title": "legal & financial coordination",
+          "number": "[ 05 ]",
+          "text": "We work alongside your counsel and bankers — or introduce ours. Closings handled with the seriousness they deserve."
+        },
+        {
+          "title": "post-close concierge",
+          "number": "[ 06 ]",
+          "text": "Architects, contractors, conservators, gardeners — the relationships that make moving in feel less like moving. Yours for the first year."
+        }
+      ]
+    }
+  },
+  {
+    "id": "team",
+    "label": "[ OUR TEAM ]",
+    "title": "the people behind the practice",
+    "text": "Seventy advisors across New York, San Francisco, and London. Architects, designers, lawyers, and a few former editors — the kind of people you might already know.",
+    "image": "/assets/site/laXYmGdVaPFZVOlbKI4tm95cM4.webp",
+    "members": [
+      {
+        "number": "[01]",
+        "name": "Theo Marchetti",
+        "post": "partner",
+        "city": "San Francisco",
+        "image": "/assets/site/nTvLN3RvxKgupZN1BenkRf4j5c.webp",
+        "alt": "Theo Marchetti, partner at Marby, San Francisco"
+      },
+      {
+        "number": "[02]",
+        "name": "Imogen Hart",
+        "post": "senior advisor",
+        "city": "London",
+        "image": "/assets/site/WxSMsPHdbTFpWCoaYQwqSzSrkgU.webp",
+        "alt": "Imogen Hart, senior advisor at Marby, London"
+      },
+      {
+        "number": "[03]",
+        "name": "Julian Okafor",
+        "post": "advisor",
+        "city": "New York",
+        "image": "/assets/site/0sI5VagrmB1EzuiksRgzRaUAGuw.webp",
+        "alt": "Julian Okafor, advisor at Marby, New York"
+      },
+      {
+        "number": "[04]",
+        "name": "Sasha Reinhardt",
+        "post": "head of off-market",
+        "city": "New York",
+        "image": "/assets/site/n8URjE2xYKhSYFVM96y1lgUJwLQ.webp",
+        "alt": "Sasha Reinhardt, head of off-market at Marby, New York"
+      },
+      {
+        "number": "[05]",
+        "name": "Henry Tant",
+        "post": "senior advisor",
+        "city": "San Francisco",
+        "image": "/assets/site/I7A3AdDy2L9N4RMQXRxk5g1y2IQ.webp",
+        "alt": "Henry Tant, senior advisor at Marby, San Francisco"
+      }
+    ]
+  },
+  {
+    "id": "faq",
+    "label": "[ FAQ ]",
+    "title": "questions & answers",
+    "text": "The questions we are asked most often, answered honestly. If yours isn't here, write directly to the partners — we read every note.",
+    "cta": {
+      "label": "Get in touch",
+      "href": "/contact"
+    },
+    "image": "/assets/site/dnwWNzhzNWipdpEpwMtD9ZMqZg.webp",
+    "imageAlt": "Editorial real estate image used on the homepage",
+    "general": [
+      {
+        "q": "what does the buying process at Marby look like?",
+        "a": "It starts with a 30-minute conversation—no questionnaire, no obligation. Your advisor curates listings, arranges viewings, and guides you through every step to closing. Median engagement: 11 months."
+      },
+      {
+        "q": "how quickly can you sell a property?",
+        "a": "It starts with a 30-minute conversation—no questionnaire, no obligation. Your advisor curates listings, arranges viewings, and guides you through every step to closing. Median engagement: 11 months."
+      },
+      {
+        "q": "do you handle rental management?",
+        "a": "It starts with a 30-minute conversation—no questionnaire, no obligation. Your advisor curates listings, arranges viewings, and guides you through every step to closing. Median engagement: 11 months."
+      },
+      {
+        "q": "how often are listings updated?",
+        "a": "It starts with a 30-minute conversation—no questionnaire, no obligation. Your advisor curates listings, arranges viewings, and guides you through every step to closing. Median engagement: 11 months."
+      },
+      {
+        "q": "do you work with first-time buyers?",
+        "a": "It starts with a 30-minute conversation—no questionnaire, no obligation. Your advisor curates listings, arranges viewings, and guides you through every step to closing. Median engagement: 11 months."
+      }
+    ],
+    "property": [
+      {
+        "q": "do you represent both buyers and sellers?",
+        "a": "Yes, we work with both sides of the transaction. Our approach is the same regardless — honest counsel, no pressure, and representation that puts your interests first."
+      },
+      {
+        "q": "what types of properties do you specialize in?",
+        "a": "We focus on residential properties in the premium segment — single-family homes, townhouses, and curated multi-unit buildings. Each listing we take on is one we'd genuinely stand behind."
+      },
+      {
+        "q": "can I see a property before it officially hits the market?",
+        "a": "Often, yes. A significant portion of our transactions happen off-market. If you're registered with us, you'll hear about relevant opportunities before they're publicly listed."
+      },
+      {
+        "q": "what makes Marby different from a large brokerage?",
+        "a": "Scale works against intimacy. At Marby, every client works directly with a partner — not an associate, not an assistant. That continuity changes the quality of advice you receive."
+      },
+      {
+        "q": "do you work outside of your primary markets?",
+        "a": "On a selective basis. If a client we know well needs representation in a market we don't cover directly, we'll either extend our involvement or connect them with someone we trust. We don't hand people off blindly."
+      }
+    ],
+    "gridLabel": "[ FAQS ]",
+    "gridContact": "have more questions or need additional information"
+  },
+  {
+    "id": "about",
+    "header": {
+      "label": "[ About us ]",
+      "title": [
+        "a practice,",
+        "not a platform"
+      ]
+    },
+    "vision": {
+      "image": "/assets/site/VsRe3CktSOqm10Cg3qnL6mzAo.webp",
+      "label": "[ VISION & MISSION ]",
+      "title": "our path",
+      "text": "We exist to make residential real estate slow, considered, and intergenerational again.",
+      "cards": [
+        {
+          "title": "vision",
+          "text": "To be the residential brokerage that families return to for three generations — the one a daughter calls, twenty years after her mother bought her first home through us."
+        },
+        {
+          "title": "mission",
+          "text": "To represent people who treat their home as a long-term decision — and to give them, every time, a standard of work the industry has spent two decades trying to forget."
+        }
+      ]
+    },
+    "years": {
+      "label": "[ FOREWORD ]",
+      "text": "Marby was founded in 2009 to represent residential real estate the way it deserves to be, slowly, attentively, and only for as many clients as we can know by name. Seventeen years later, that has not changed. The list has grown. The standard has not.",
+      "milestones": [
+        {
+          "title": "First milestone",
+          "year": "2011",
+          "text": "$100M in aggregate sales. The first hire — Theo Marchetti, a former architect — joins as second advisor."
+        },
+        {
+          "title": "San Francisco",
+          "year": "2014",
+          "text": "Pacific Heights office opens in a restored carriage house. Theo takes the West Coast practice."
+        },
+        {
+          "title": "London",
+          "year": "2018",
+          "text": "A third office opens in a Notting Hill mews. Imogen Hart leads, after eleven years at an interiors magazine."
+        },
+        {
+          "title": "The Journal",
+          "year": "2022",
+          "text": "Marby’s editorial publication launches — market notes, essays, and quarterly letters, written in-house."
+        },
+        {
+          "title": "Now",
+          "year": "2026",
+          "text": "Seventy advisors. Three cities. $2.4B in aggregate sales. Eighty-four percent of work comes from referral."
+        }
+      ]
+    },
+    "beliefs": {
+      "label": "[ A MANIFESTO ]",
+      "title": "what we believe",
+      "image": "/assets/site/tihXgqIF31rAy6dbBhVsCMnKA.webp",
+      "imageAlt": "A low modern house among dune grasses",
+      "items": [
+        {
+          "label": "[ 01 ]",
+          "title": "a home is not a transaction",
+          "text": "It is a decade-long decision, and it should be made by people, not by algorithms or alerts. Our job is to slow the decision down, not to speed it up."
+        },
+        {
+          "label": "[ 02 ]",
+          "title": "discretion is a practice, not a favour",
+          "text": "Roughly half of what changes hands at Marby never reaches a public portal. We don’t talk about closings unless asked, and we don’t ask to be quoted in the press."
+        },
+        {
+          "label": "[ 03 ]",
+          "title": "marketing is the last thing, not the first",
+          "text": "We start with the building. Then the photographs. Then the words. We market least and tend to sell closest to ask — because the work was done before the listing went live."
+        }
+      ]
+    }
+  },
+  {
+    "id": "contact",
+    "header": {
+      "label": "[ Contact ]",
+      "title": "get in touch with Marby"
+    },
+    "offices": [
+      {
+        "counter": "/1",
+        "label": "OFFICE [ 01 ]",
+        "city": "New York",
+        "image": "/assets/site/SNFoaRFEV2OUSoyhXGiZgC3hGDI.webp",
+        "imagePhone": "/assets/site/rn8l7GjeUxSbYWi5KAQfXT7Irh4.webp",
+        "text": "A three-floor walk-up above what used to be a tailor's shop. Sixteen years on, the door still opens onto the same quiet street and the kettle is still on.",
+        "address": [
+          "123 Example Street, Floor 3",
+          "Tribeca, New York"
+        ],
+        "hours": [
+          "Mon — Fri · 9:00 — 18:00",
+          "Sat by appointment · Sun closed"
+        ],
+        "phone": "+1 (212) 555 — 0182",
+        "tel": "+12125550182",
+        "email": "ny@example.com"
+      },
+      {
+        "counter": "/2",
+        "label": "OFFICE [ 02 ]",
+        "city": "London",
+        "image": "/assets/site/bfL7Ao45wBC4ZwjZrjbdi17M3k.webp",
+        "text": "A charming two-story flat nestled above a quaint bookshop. After a decade, the entrance still leads to the same side street, where the aroma of freshly brewed tea fills the air.",
+        "address": [
+          "45 Example Street, 2nd Floor",
+          "Marylebone, London"
+        ],
+        "hours": [
+          "Mon — Fri · 9:00 — 18:00",
+          "Sat by appointment · Sun closed"
+        ],
+        "phone": "+44 20 7946 0958",
+        "tel": "+442079460958",
+        "email": "london@example.com"
+      },
+      {
+        "counter": "/3",
+        "label": "OFFICE [ 03 ]",
+        "city": "San Francisco",
+        "image": "/assets/site/aKHyia7GDbqGBjpIt8DrrX3Ty0.webp",
+        "text": "A restored carriage house set behind a courtyard of Japanese maples. Theo Marchetti opens the door most mornings before the coffee shop next door.",
+        "address": [
+          "210 Example Street",
+          "Pacific Heights, San Francisco"
+        ],
+        "hours": [
+          "Mon — Fri · 9:00 — 18:00",
+          "Sat by appointment · Sun closed"
+        ],
+        "phone": "+1 (415) 555 — 0214",
+        "tel": "+14155550214",
+        "email": "sf@example.com"
+      }
+    ],
+    "cta": {
+      "label": "Schedule a visit",
+      "href": "/contact"
+    },
+    "labels": {
+      "address": "address",
+      "hours": "HOURS",
+      "phone": "PHONE NUMBER",
+      "email": "Direct email",
+      "image": "Office interior image"
+    }
+  },
+  {
+    "id": "property",
+    "hero": {
+      "title": "property listing",
+      "image": "/assets/site/Eelve4sm9YDSwp7WmV6Lr3Le4.webp"
+    },
+    "empty": "Sorry, no items were found for this query",
+    "advisor": {
+      "label": "lead advisor",
+      "name": "Julian Okafor",
+      "phone": "+1 (212) 555 — 0182",
+      "email": "julian@example.com",
+      "image": "/assets/site/7ZMFyi4JpzAMhjCiEjpggOiaF4.webp",
+      "imageAlt": "Portrait of a lead advisor in a gray blazer against a warm orange background"
+    },
+    "quietList": {
+      "label": "off market interest",
+      "text": "Looking for something similar? We hold a quiet list of four pre-war townhouses not currently public.",
+      "cta": {
+        "label": "request quiet list",
+        "href": "/contact"
+      }
+    },
+    "faqImageAlt": "Property detail page supporting image",
+    "labels": {
+      "crumb": "Property Listing",
+      "all": "all",
+      "search": "Search…",
+      "area": "AREA",
+      "floors": "floors",
+      "bathrooms": "Bathrooms",
+      "bedrooms": "BEDROOMS",
+      "location": "LOCATION",
+      "buildYear": "Build year",
+      "price": "PRICE",
+      "overview": "overview",
+      "highlights": "highlights",
+      "locationTitle": "location",
+      "viewAll": "view all",
+      "rooms": {
+        "bedroom": "bedroom",
+        "bathroom": "bathroom",
+        "kitchen": "kitchen",
+        "exterior": "exterior"
+      }
+    }
+  },
+  {
+    "id": "blog",
+    "header": {
+      "label": "[ Blog ]",
+      "title": "our newsroom"
+    },
+    "categories": [
+      "Buyer's Guide",
+      "Interior & Renovation",
+      "Buying & Selling"
+    ],
+    "empty": "No items",
+    "related": {
+      "label": "[ BLOG ]",
+      "title": "related articles"
+    },
+    "crumb": "Blog",
+    "all": "All"
+  },
+  {
+    "id": "terms",
+    "label": "[ Last updated: June 19, 2026 ]",
+    "title": "terms & conditions",
+    "sections": [
+      {
+        "title": "1.  About Marby",
+        "body": [
+          "Marby is an online platform that allows users to browse luxury property listings and connect with real estate agents. We are not a real estate broker, agent, or party to any transaction between users and agents or property owners."
+        ]
+      },
+      {
+        "title": "2.  Eligibility",
+        "body": [
+          "You must be at least 18 years old and legally capable of entering into binding contracts to use Marby."
+        ]
+      },
+      {
+        "title": "3. Use of the Platform",
+        "body": [
+          "You agree to:"
+        ],
+        "list": [
+          "Use Marby only for lawful purposes.",
+          "Provide accurate information when contacting agents or creating an account.",
+          "Not misuse, copy, scrape, or interfere with the platform or its content."
+        ]
+      },
+      {
+        "title": "4. Listings & Information",
+        "body": [
+          "All property listings, images, prices, and descriptions are provided by third parties (agents, agencies, or owners). Marby does not guarantee the accuracy, completeness, or availability of any listing. Always verify details directly with the agent before making decisions."
+        ]
+      },
+      {
+        "title": "5. Connecting with Agents",
+        "body": [
+          "Marby facilitates introductions between users and agents but is not responsible for any communication, agreement, transaction, or dispute that results. Any contract you enter into is solely between you and the agent or seller."
+        ]
+      },
+      {
+        "title": "6. Intellectual Property",
+        "body": [
+          "All content on Marby — including the logo, brand, design, and software — belongs to Marby or its licensors. You may not reproduce, distribute, or use it without written permission"
+        ]
+      },
+      {
+        "title": "7. User Content",
+        "body": [
+          "If you submit reviews, inquiries, or other content, you grant Marby a non-exclusive, royalty-free license to display and use it on the platform."
+        ]
+      },
+      {
+        "title": "8. Disclaimer",
+        "body": [
+          "Marby is provided “as is” without warranties of any kind. We do not guarantee uninterrupted, error-free service or that any property will meet your expectations."
+        ]
+      },
+      {
+        "title": "9. Limitation of Liability",
+        "body": [
+          "To the maximum extent permitted by law, Marby is not liable for any indirect, incidental, or consequential damages arising from your use of the platform, including losses related to property transactions."
+        ]
+      },
+      {
+        "title": "10. Privacy",
+        "body": [
+          "Your use of Marby is also governed by our Privacy Policy, which explains how we collect and use your data."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "notFound",
+    "title": "oops!",
+    "text": "We couldn't find the page you were looking for.",
+    "cta": {
+      "label": "go to homepage",
+      "href": "/"
+    },
+    "image": "/assets/site/I2adpByzj3kukOSA1lTr27x8Jug.webp"
+  }
+]

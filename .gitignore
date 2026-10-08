@@ -9,3 +9,9 @@ dist/
 ref/
 launch/
 .vercel
+.baseline-dist/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+zips/
