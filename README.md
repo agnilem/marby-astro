@@ -1,3 +1,22 @@
+<p align="center">
+  <a href="https://startfrom.co/templates/marby?utm_source=github&utm_medium=readme&utm_campaign=marby"><img alt="Marby: A quiet, editorial real estate template for Astro and Next.js. Free and MIT licensed, by Startfrom." src="./.github/assets/cover.jpg" width="100%"></a>
+</p>
+
+<p align="center">
+  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-111111?style=flat-square"></a>
+  <img alt="Astro 7" src="https://img.shields.io/badge/Astro-7-111111?style=flat-square">
+  <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-111111?style=flat-square">
+  <img alt="Static output" src="https://img.shields.io/badge/output-static-111111?style=flat-square">
+</p>
+
+<p align="center">
+  <a href="https://marby.startfrom.co"><b>Astro demo</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://marby-next.startfrom.co"><b>Next.js demo</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://startfrom.co/templates/marby?utm_source=github&utm_medium=readme&utm_campaign=marby"><b>Startfrom</b></a>
+</p>
+
 # Marby, a real estate theme for Astro and Next.js
 
 A quiet, editorial theme for boutique real estate agencies and brokerages: property listings with filters, detail pages with photo galleries, a blog, team and office pages. Static output, no UI framework: every interaction is a small vanilla TypeScript module.
@@ -5,8 +24,6 @@ A quiet, editorial theme for boutique real estate agencies and brokerages: prope
 <!-- next -->
 The same site also ships as a **Next.js** app in [`next/`](next/) (Next.js 16, App Router, React 19, static export). It is generated from this Astro source and checked against it element by element on every page, so the two builds look and behave the same. Use whichever stack you prefer; [`next/README.md`](next/README.md) has its commands and file map.
 <!-- /next -->
-
-Live demo: [marby.startfrom.co](https://marby.startfrom.co) (Astro), [marby-next.startfrom.co](https://marby-next.startfrom.co) (Next.js)
 
 ## Features
 
