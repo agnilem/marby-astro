@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://startfrom.co/templates/marby?utm_source=github&utm_medium=readme&utm_campaign=marby"><img alt="Marby: A quiet, editorial real estate template for Astro and Next.js. Free and MIT licensed, by Startfrom." src="./.github/assets/cover.jpg" width="100%"></a>
+  <a href="https://startfrom.co/?utm_source=github&utm_medium=readme&utm_campaign=marby"><img alt="Marby: A quiet, editorial real estate template for Astro and Next.js. Free and MIT licensed, by Startfrom." src="./.github/assets/cover.jpg" width="100%"></a>
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
   &nbsp;·&nbsp;
   <a href="https://marby-next.startfrom.co"><b>Next.js demo</b></a>
   &nbsp;·&nbsp;
-  <a href="https://startfrom.co/templates/marby?utm_source=github&utm_medium=readme&utm_campaign=marby"><b>Startfrom</b></a>
+  <a href="https://startfrom.co/?utm_source=github&utm_medium=readme&utm_campaign=marby"><b>Startfrom</b></a>
 </p>
 
 # Marby, a real estate theme for Astro and Next.js

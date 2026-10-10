@@ -8,7 +8,7 @@ export default function StoreBadge() {
   return (
     <>
       {on && (
-        <a className="badge" href="https://startfrom.co/templates/marby" target="_blank" rel="noopener">
+        <a className="badge" href="https://startfrom.co/" target="_blank" rel="noopener">
           <span className="badge__label">GET MARBY</span>
           <span className="badge__mask">
             <span className="badge__out" dangerouslySetInnerHTML={{ __html: arrow }} />
