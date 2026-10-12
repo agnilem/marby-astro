@@ -253,6 +253,12 @@ for (const d of ['components', 'app', 'icons']) {
   if (!existsSync(dir)) continue;
   for (const f of walkDir(dir)) if (readFileSync(f, 'utf8').startsWith('// GENERATED')) rmSync(f);
 }
+// Demo copy names its stack ("built with Astro", "Astro template"). The Next
+// build names Next.js in the same places: titles, descriptions, alt text.
+const nextStack = (s) => s
+  .replace(/\b([Aa])n Astro (?=(?:website )?template)/g, '$1 Next.js ')
+  .replace(/\bAstro (?=(?:website )?[Tt]emplate)/g, 'Next.js ')
+  .replace(/\bbuilt with Astro\b/g, 'built with Next.js');
 const results = files.map(convert);
 for (const { rel, dest, out } of results) {
   // Nothing Astro-only may survive into the TSX.
@@ -261,7 +267,7 @@ for (const { rel, dest, out } of results) {
     if (re.test(body)) err(rel, `Astro syntax left in output: ${what}`);
   }
   mkdirSync(dirname(dest), { recursive: true });
-  writeFileSync(dest, out);
+  writeFileSync(dest, nextStack(out));
 }
 
 // Icons imported with ?raw become string modules.
@@ -285,6 +291,11 @@ const copyTree = (from, to) => {
 for (const d of ['scripts', 'content']) {
   rmSync(join(N, d), { recursive: true, force: true });
   copyTree(join(A, d), join(N, d));
+}
+for (const f of walkDir(join(N, 'content'))) {
+  if (!/\.(json|md|mdx)$/.test(f)) continue;
+  const s = readFileSync(f, 'utf8');
+  if (nextStack(s) !== s) writeFileSync(f, nextStack(s));
 }
 // Images, video and the favicon: one copy of public/, never edited in next/.
 rmSync(join(ROOT, 'next', 'public'), { recursive: true, force: true });

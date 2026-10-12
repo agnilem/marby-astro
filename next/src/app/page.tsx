@@ -14,7 +14,7 @@ export default function Index() {
     <>
       <Base route="/"
         title="Marby — Luxury Real Estate"
-        description="Discover luxury properties and find your dream home with Marby's expert real estate team. Marby is a real estate template built with Astro."
+        description="Discover luxury properties and find your dream home with Marby's expert real estate team. Marby is a real estate template built with Next.js."
       >
         <Hero />
         <HomeAbout />
