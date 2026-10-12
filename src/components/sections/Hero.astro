@@ -3,7 +3,8 @@ import { site } from '../../lib/site';
 const { hero } = await site('home');
 ---
 <section class="hero" data-dark>
-  <video class="hero__video" src={hero.video} poster={hero.poster} autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <link rel="preload" as="image" href={hero.poster} fetchpriority="high" />
+  <video class="hero__video" data-src={hero.video} poster={hero.poster} muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="scrim" aria-hidden="true"></div>
   <div class="container hero__inner">
     <h1 class="hero__title" data-appear="mount">{hero.title}</h1>

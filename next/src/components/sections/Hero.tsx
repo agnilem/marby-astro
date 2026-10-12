@@ -8,7 +8,8 @@ export default async function Hero() {
   return (
     <>
       <section className="hero" data-dark="">
-        <video className="hero__video" src={hero.video} poster={hero.poster} autoPlay muted loop playsInline preload="auto" aria-hidden="true"></video>
+        <link rel="preload" as="image" href={hero.poster} fetchPriority="high" />
+        <video className="hero__video" data-src={hero.video} poster={hero.poster} muted loop playsInline preload="none" aria-hidden="true"></video>
         <div className="scrim" aria-hidden="true"></div>
         <div className="container hero__inner">
           <h1 className="hero__title" data-appear="mount">{hero.title}</h1>

@@ -7,6 +7,7 @@ import { initFilters } from './filter';
 import { initJumpLinks } from './jumplinks';
 import { initGallery } from './gallery';
 import { initForms } from './form';
+import { initDeferredVideos } from './video';
 
 initSmooth();
 initAppear();
@@ -17,3 +18,4 @@ initFilters();
 initJumpLinks();
 initGallery();
 initForms();
+initDeferredVideos();
