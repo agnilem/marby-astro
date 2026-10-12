@@ -1092,9 +1092,11 @@ html.js [data-appear].is-in {
     right: 20px;
     bottom: 66px;
     z-index: 10;
-    width: 140px;
+    min-width: 140px;
     height: 38px;
     padding: 4px 4px 4px 10px;
+    gap: 10px;
+    white-space: nowrap;
     border-radius: 4px;
     background: rgb(27, 27, 40);
     display: flex;

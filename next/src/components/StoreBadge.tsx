@@ -8,8 +8,8 @@ export default function StoreBadge() {
   return (
     <>
       {on && (
-        <a className="badge" href="https://startfrom.co/" target="_blank" rel="noopener">
-          <span className="badge__label">GET MARBY</span>
+        <a className="badge" href="https://buy.polar.sh/polar_cl_C7mCmNfCQK9xTynrq5u0t4I4CpMoRc5tN5UCB3mx56l?utm_source=astro-demo&utm_medium=badge&utm_campaign=marby" target="_blank" rel="noopener">
+          <span className="badge__label">ALL ASTRO THEMES</span>
           <span className="badge__mask">
             <span className="badge__out" dangerouslySetInnerHTML={{ __html: arrow }} />
             <span className="badge__in" dangerouslySetInnerHTML={{ __html: arrow }} />
